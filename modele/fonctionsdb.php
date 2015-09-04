@@ -35,5 +35,5 @@ function AffichageImage($inputImg){
 	$description = $querydesc->fetch();
 
 	//return
-	return "<img src=\"uploads/".$inputImg."\" alt='".$description["description"]." \>";
+	return "<img src=\"uploads/".$inputImg."\" alt='".$description["description"]."' \>";
 }
