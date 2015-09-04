@@ -73,6 +73,10 @@
 								</div>
 							<?php
 						}
+						else
+						{
+							echo "[ERREUR] Aucun post ne porte l'ID renseignée. Celui-ci n'existe pas (ou plus). Sorry :/";
+						}
 					?>
 				</div>
 			</div>

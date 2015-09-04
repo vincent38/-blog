@@ -19,10 +19,6 @@ if (isset($_GET["id"]))
 {
 	$billets = AffichageBillet($_GET["id"]);
 }
-else
-{
-	die ;
-}
 
 //Inclusion vue index
 include_once("vue/commentaires.php");
