@@ -75,7 +75,7 @@
 						}
 						else
 						{
-							echo "[ERREUR] Aucun post ne porte l'ID renseignée. Celui-ci n'existe pas (ou plus). Sorry :/";
+							echo "[ERREUR] Aucun post ne porte l'ID renseignée. Celui-ci n'existe pas (ou plus). Sorry :/"; 
 						}
 					?>
 				</div>
