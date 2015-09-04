@@ -22,6 +22,24 @@ function AffichageIndex(){
 	return $returnedData;
 }
 
+function AffichageBillet($id){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès au billet demandé
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image FROM billets WHERE id = :id");
+
+	//Query
+	$askForPosts->execute(array("id"=>$id));
+
+	//Fetch all
+	$returnedData = $askForPosts->fetch();
+
+	//return
+	return $returnedData;
+}
+
 function AffichageImage($inputImg){
 
 	//Accès à la BDD
