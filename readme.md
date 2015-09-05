@@ -21,7 +21,3 @@ Ce blog est un projet personnel. Vous pouvez le forker, effectuer des pull reque
 
 Si vous souhaitez vous en servir dans le cadre d'un projet NON-COMMERCIAL, merci de me citer en tant qu'auteur et de m'envoyer un lien vers votre version du blog :D
 
-Fichiers non inclus
-----------------------
-
-La connexion à la BDD et les variables d'API ne sont pas incluses dans les builds envoyées.
