@@ -109,7 +109,7 @@
 						</div>
 						<input type="hidden" name="id_billet" id="titre" value="<?php echo $_GET["id"]; ?>">
 						<div class="form-group">
-							<div class="g-recaptcha" data-sitekey="6LfSaAsTAAAAAEfZ0Pm-Upmg_Qm00KCVu6VnVRLN"></div>
+							<div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
 						</div>
 						<input type="submit" class="btn btn-default"/>
 					</form>

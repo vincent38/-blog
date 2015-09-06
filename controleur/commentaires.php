@@ -13,6 +13,9 @@ include_once("modele/connexionsql.php");
 //Inclusion fonctions SQL
 include_once("modele/fonctionsdb.php");
 
+//Inclusion fonctions SQL
+include_once("apivariables.php");
+
 //Ajouter un commentaire
 if (isset($_POST["auteur"]) AND isset($_POST["id_billet"]) AND isset($_POST["commentaire"]) AND isset($_POST["g-recaptcha-response"]))
 {
