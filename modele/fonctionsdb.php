@@ -22,6 +22,37 @@ function AffichageIndex(){
 	return $returnedData;
 }
 
+function AffichageCommentaires($id){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux 10 derniers billets
+	$askForComments = $base->prepare("SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires WHERE id_billet = :id");
+
+	//exec
+	$askForComments->execute(array("id"=>$id));
+	//Fetch all
+	$returnedComments = $askForComments->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedComments;
+}
+
+function PostComment($id, $author, $comment){
+
+	//Accès à la BDD
+	global $base;
+
+	//Préparer insertion
+	$writenewarticle = $base->prepare("INSERT INTO commentaires(id_billet, auteur, commentaire, date_commentaire) VALUES(:id_billet,:auteur,:commentaire,NOW())");
+	
+	//Insertion
+	$writenewarticle->execute(array("id_billet"=>htmlspecialchars($id),
+											"auteur"=>htmlspecialchars($author),
+											"commentaire"=>htmlspecialchars($comment)));
+}
+
 function AffichageBillet($id){
 
 	//Accès à la BDD

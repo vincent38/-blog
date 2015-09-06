@@ -26,6 +26,8 @@
 		</script>
 		<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
 		<!-- End Cookie Consent plugin -->
+		<!-- reCAPTCHA par Google-->
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<!--Balise de titre-->
 		<title>Affichage du post</title>
 	</head>
@@ -76,8 +78,41 @@
 						else
 						{
 							echo "[ERREUR] Aucun post ne porte l'ID renseignée. Celui-ci n'existe pas (ou plus). Sorry :/"; 
+							die;
 						}
 					?>
+					<!--Partie commentaires + post-->
+					<h2>Commentaires</h2>
+					<?php
+					{
+						foreach ($comments as $comment)
+						{
+							if (!empty($comment["id"]))
+							{
+								echo "<div class='well well-sm'>";
+								echo "<h4>".$comment["auteur"]." a écrit ".$comment["datewrote"]." :</h4>";
+								echo "<p>".$comment["commentaire"]."</p></div>";
+							}
+						}
+					}
+					?>
+					<!--Formulaire pour poster un commentaire-->
+					<form method="post" action="commentaires.php?id=<?php if (isset($_POST["id"])) {echo $_POST["id"];} else {echo $_GET["id"];} ?>">
+						<h4>Poster un commentaire :</h4>
+						<div class="form-group">
+							<label for="auteur">Pseudonyme : </label>
+							<input type="text" name="auteur" id="auteur" class="form-control" value="<?php if (isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
+						</div>				
+						<div class="form-group">
+							<label for="commentaire">Commentaire : </label>
+							<input type="text" class="form-control" name="commentaire" id="commentaire" />
+						</div>
+						<input type="hidden" name="id_billet" id="titre" value="<?php echo $_GET["id"]; ?>">
+						<div class="form-group">
+							<div class="g-recaptcha" data-sitekey="6LfSaAsTAAAAAEfZ0Pm-Upmg_Qm00KCVu6VnVRLN"></div>
+						</div>
+						<input type="submit" class="btn btn-default"/>
+					</form>
 				</div>
 			</div>
 		</div>
