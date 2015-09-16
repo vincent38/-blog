@@ -6,6 +6,7 @@
 
 	Inclus dans : ../commentaires.php
 */
+session_start();
 
 //Inclusion connexionBDD
 include_once("modele/connexionsql.php");
@@ -42,6 +43,18 @@ if (isset($_GET["id"]))
 		$comments["cle"]["datewrote"] = $comment["datewrote"];
 		$comments["cle"]["commentaire"] = nl2br(htmlspecialchars($comment["commentaire"]));
 	}
+}
+
+//Connexion/déconnexion
+if (isset($_SESSION["pseudo"]))
+{
+	//Affichage "Bienvenue, pseudo" + déco
+	$menu = true;
+}
+else
+{
+	//Affichage co
+	$menu = false;
 }
 
 //Inclusion vue index 

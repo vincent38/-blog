@@ -6,21 +6,23 @@ include_once("modele/connexionsql.php");
 //Inclusion des fonctions relatives aux membres
 include_once("modele/fonctionsdb.php");
 
-//Test : si le visiteur a une connexion automatique ou est déjà connectée, on peut refuser l'accès à des pages
+$status = "";
+
+//Test : si le visiteur a une connexion automatique ou est déjà connecté, on peut refuser l'accès à des pages
 if (isset($_COOKIE["username"]) AND isset($_COOKIE["passwd"]))
 {
 	$reponse = connexionMembre($_COOKIE["username"], $_COOKIE["passwd"]);
 	if ($reponse == true)
 	{
 		setSessionUser($_COOKIE["username"]);
-		echo "Connecté !<br />";
+		$status .= "Connecté !<br />";
 		$form = false;
 	}
 	else
 	{
-		echo "Vos cookies de connexion sont erronés !";
-		setcookie("username",$_POST["pseudo"],time()-3600,null,null,false,true);
-		setcookie("passwd",$cryptedPass,time()-3600,null,null,false,true);
+		$status .= "Vos cookies de connexion sont erronés !";
+		setcookie("username","",time()-3600,null,null,false,true);
+		setcookie("passwd","",time()-3600,null,null,false,true);
 		$form = true;
 	}
 }
@@ -38,18 +40,18 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 		if ($reponse == true)
 		{
 			setSessionUser($_POST["pseudo"]);
-			echo "Connecté !<br />";
+			$status .= "Connecté !<br />";
 			$form = false;
 			if (isset($_POST["autoco"]))
 			{
 				setcookie("username",$_POST["pseudo"],time()+365*24*3600,null,null,false,true);
 				setcookie("passwd",$cryptedPass,time()+365*24*3600,null,null,false,true);
-				echo "Connexion automatique installée pour 1 an !";
+				$status .= "Connexion automatique installée pour 1 an !";
 			}
 		}
 		else
 		{
-			echo "Nom d'utilisateur ou MdP faux.";
+			$status .= "Nom d'utilisateur ou MdP faux.";
 			$form = true;
 		}
 	}
@@ -59,6 +61,17 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 	}
 }
 
+//Connexion/déconnexion
+if (isset($_SESSION["pseudo"]))
+{
+	//Affichage "Bienvenue, pseudo" + déco
+	$menu = true;
+}
+else
+{
+	//Affichage co
+	$menu = false;
+}
 
 include_once("vue/connexion.php")
 ?>

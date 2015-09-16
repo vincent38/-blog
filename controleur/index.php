@@ -8,6 +8,8 @@
 	Inclus dans : ../index.php
 */
 
+session_start();
+
 //Inclusion connexionBDD
 include_once("modele/connexionsql.php");
 
@@ -23,6 +25,30 @@ foreach ($billets as $cle => $billet)
 	$billets["cle"]["titre"] = htmlspecialchars($billet["titre"]);
 	$billets["cle"]["auteur"] = htmlspecialchars($billet["auteur"]);
 	$billets["cle"]["contenu"] = nl2br(htmlspecialchars($billet["contenu"]));
+}
+
+//Connexion/déconnexion
+if (isset($_SESSION["pseudo"]))
+{
+	//Affichage "Bienvenue, pseudo" + déco
+	$menu = true;
+}
+else
+{
+	//Affichage co
+	$menu = false;
+}
+
+//Connexion/déconnexion
+if (isset($_SESSION["pseudo"]))
+{
+	//Affichage "Bienvenue, pseudo" + déco
+	$menu = true;
+}
+else
+{
+	//Affichage co
+	$menu = false;
 }
 
 //Inclusion vue index

@@ -2,7 +2,7 @@
 //Inclusion des ID SQL
 include_once("modele/connexionsql.php");
 //Inclusion des fonctions relatives aux membres
-include_once("modele/fonctions_membres.php");
+include_once("modele/fonctionsdb.php");
 
 //Vérification : si les variables POST sont définies, traitement de l'inscription / sinon affichage formulaire
 if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]) AND isset($_POST["mail"]))
@@ -48,5 +48,18 @@ else
 {
 	$form = true;
 }
+
+//Connexion/déconnexion
+if (isset($_SESSION["pseudo"]))
+{
+	//Affichage "Bienvenue, pseudo" + déco
+	$menu = true;
+}
+else
+{
+	//Affichage co
+	$menu = false;
+}
+
 include_once("vue/inscription.php");
 ?>
