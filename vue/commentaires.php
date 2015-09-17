@@ -59,22 +59,33 @@
 					}
 					?>
 					<!--Formulaire pour poster un commentaire-->
-					<form method="post" action="commentaires.php?id=<?php if (isset($_POST["id"])) {echo $_POST["id"];} else {echo $_GET["id"];} ?>">
-						<h4>Poster un commentaire :</h4>
-						<div class="form-group">
-							<label for="auteur">Pseudonyme : </label>
-							<input type="text" name="auteur" id="auteur" class="form-control" value="<?php if (isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
-						</div>				
-						<div class="form-group">
-							<label for="commentaire">Commentaire : </label>
-							<input type="text" class="form-control" name="commentaire" id="commentaire" />
-						</div>
-						<input type="hidden" name="id_billet" id="titre" value="<?php echo $_GET["id"]; ?>">
-						<div class="form-group">
-							<div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
-						</div>
-						<input type="submit" class="btn btn-default"/>
-					</form>
+					<?php
+						if ($form == true)
+						{
+							?>
+							<form method="post" action="commentaires.php?id=<?php if (isset($_POST["id"])) {echo $_POST["id"];} else {echo $_GET["id"];} ?>">
+								<h4>Poster un commentaire :</h4>
+								<div class="form-group">
+									<label for="auteur">Pseudonyme : </label>
+									<input disabled type="text" name="auteur" id="auteur" class="form-control" value="<?php echo $_SESSION["pseudo"]; ?>">
+								</div>				
+								<div class="form-group">
+									<label for="commentaire">Commentaire : </label>
+									<input type="text" class="form-control" name="commentaire" id="commentaire" />
+								</div>
+								<input type="hidden" name="id_billet" id="titre" value="<?php echo $_GET["id"]; ?>">
+								<div class="form-group">
+									<div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
+								</div>
+								<input type="submit" class="btn btn-default"/>
+							</form>
+							<?php
+						}
+						else
+						{
+							echo $error;
+						}
+					?>
 				</div>
 			</div>
 		</div>

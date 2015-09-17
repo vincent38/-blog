@@ -22,6 +22,18 @@ $nbcomms = selectComms($_SESSION["pseudo"]);
 //Select posts
 $nbposts = selectPosts($_SESSION["pseudo"]);
 
+//Select comms G
+$nbcommstempG = selectCommsGlobal();
+ 
+//comms autres
+$nbcommsG = $nbcommstempG - $nbcomms;
+
+//Select posts G
+$nbpoststempG = selectPostsGlobal();
+
+//Posts autres
+$nbpostsG = $nbpoststempG - $nbposts;
+
 //Ranking
 $rank = Ranking($_SESSION["pseudo"]);
 

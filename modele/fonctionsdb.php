@@ -92,7 +92,7 @@ function inscriptionMembre($pseudo, $pass, $mail)
 	//Insertion du membre dans la BDD
 
 	global $base;
-	$insertmember = $base->prepare("INSERT INTO membres(pseudo, pass, mail, date_inscription) VALUES (:pseudo, :pass, :mail, NOW())");
+	$insertmember = $base->prepare("INSERT INTO membres(pseudo, pass, mail, date_inscription, rank) VALUES (:pseudo, :pass, :mail, NOW(), 3)");
 	$insertmember->execute(array("pseudo"=>$pseudo,
 								 "pass"=>$pass,
 								 "mail"=>$mail,));
@@ -211,4 +211,36 @@ function Ranking($pseudo){
 
 	return $sendrank["perm"];
 	
+}
+
+function RankingComment($pseudo){
+
+	global $base;
+	$rank = $base->prepare("SELECT write_comment FROM permissions, membres WHERE permissions.id = membres.rank AND pseudo = :pseudo");
+	$rank->execute(array("pseudo"=>$pseudo));
+
+	$sendrank = $rank->fetch();
+
+	return $sendrank["write_comment"];
+	
+}
+
+function selectCommsGlobal(){
+
+	global $base;
+	$comms = $base->query("SELECT COUNT(*) AS compteurcomms FROM commentaires");
+
+	$sendcomms = $comms->fetch();
+
+	return $sendcomms["compteurcomms"];
+}
+
+function selectPostsGlobal(){
+
+	global $base;
+	$comms = $base->query("SELECT COUNT(*) AS compteurbillets FROM billets");
+
+	$sendcomms = $comms->fetch();
+
+	return $sendcomms["compteurbillets"];
 }

@@ -18,11 +18,11 @@ include_once("modele/fonctionsdb.php");
 include_once("apivariables.php");
 
 //Ajouter un commentaire
-if (isset($_POST["auteur"]) AND isset($_POST["id_billet"]) AND isset($_POST["commentaire"]) AND isset($_POST["g-recaptcha-response"]))
+if (isset($_SESSION["pseudo"]) AND isset($_POST["id_billet"]) AND isset($_POST["commentaire"]) AND isset($_POST["g-recaptcha-response"]))
 {
 	if ($_POST["g-recaptcha-response"] == true)
 		{
-			PostComment($_POST["id_billet"], $_POST["auteur"], $_POST["commentaire"]);
+			PostComment($_POST["id_billet"], $_SESSION["pseudo"], $_POST["commentaire"]);
 			$published = true;
 		}
 		else
@@ -30,6 +30,29 @@ if (isset($_POST["auteur"]) AND isset($_POST["id_billet"]) AND isset($_POST["com
 			$published = false;
 		}
 }
+
+//PRINT COMMENT FORM
+
+if (isset($_SESSION["pseudo"]))
+{
+	//Ranking
+	$usercomment = RankingComment($_SESSION["pseudo"]);
+	if ($usercomment == "1")
+	{
+		$form = true;
+	}
+	else
+	{
+		$form = false;
+		$error = "<h4>Poster un commentaire :</h4><p>Vous n'avez pas les permissions requises pour poster un commentaire !</p><br />";
+	}
+}
+else
+{
+	$form = false;
+	$error = "<h4>Poster un commentaire :</h4><p>Merci de vous connecter pour pouvoir poster un commentaire !</p><br />";
+}
+
 
 //GESTION DES BILLETS
 
