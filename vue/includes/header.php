@@ -43,9 +43,23 @@
 							<div class="Collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
 									<li><a href="index.php">Index</a></li>
-									<li><a href="connexion.php" onclick="alert('Lien désactivé :3'); return false;">Administration</a></li>
-									<li><a href="moderation.php">Modération</a></li>
 									<?php
+									if (!empty($_SESSION))
+									{
+										$permissions = RankingComment($_SESSION["pseudo"]);
+										if ($permissions["miaounet_admin"] == "1")
+										{
+											?>
+											<li><a href="connexion.php" onclick="alert('Lien désactivé :3'); return false;">Administration</a></li>
+											<?php
+										}
+										if ($permissions["miaounet_mod"] == "1")
+										{
+											?>
+											<li><a href="moderation.php">Modération</a></li>
+											<?php
+										}
+									}
 									if ($menu == true)
 									{
 										?>

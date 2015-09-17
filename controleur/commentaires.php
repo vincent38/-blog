@@ -37,7 +37,7 @@ if (isset($_SESSION["pseudo"]))
 {
 	//Ranking
 	$usercomment = RankingComment($_SESSION["pseudo"]);
-	if ($usercomment == "1")
+	if ($usercomment["write_comment"] == "1")
 	{
 		$form = true;
 	}

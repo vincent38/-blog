@@ -18,6 +18,13 @@ else
 	$menu = true;
 }
 
+//Test permissions
+$access = RankingComment($_SESSION["pseudo"]);
+if ($access["miaounet_mod"] == "0")
+{
+	header("Location: index.php");
+}
+
 $comments = AffichageCommentairesGeneral();
 foreach ($comments as $cle => $comment)
 {

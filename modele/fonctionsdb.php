@@ -216,12 +216,12 @@ function Ranking($pseudo){
 function RankingComment($pseudo){
 
 	global $base;
-	$rank = $base->prepare("SELECT write_comment FROM permissions, membres WHERE permissions.id = membres.rank AND pseudo = :pseudo");
+	$rank = $base->prepare("SELECT * FROM permissions, membres WHERE permissions.id = membres.rank AND pseudo = :pseudo");
 	$rank->execute(array("pseudo"=>$pseudo));
 
 	$sendrank = $rank->fetch();
 
-	return $sendrank["write_comment"];
+	return $sendrank;
 	
 }
 
