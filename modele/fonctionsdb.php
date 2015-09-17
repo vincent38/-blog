@@ -182,7 +182,7 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 function selectComms($auth){
 
 	global $base;
-	$comms = $base->prepare("SELECT COUNT(*) AS compteurcomms FROM commentaires WHERE auteur = :author ");
+	$comms = $base->prepare("SELECT COUNT(*) AS compteurcomms FROM commentaires WHERE auteur = :author");
 	$comms->execute(array("author"=>$auth));
 
 	$sendcomms = $comms->fetch();
@@ -193,10 +193,22 @@ function selectComms($auth){
 function selectPosts($auth){
 
 	global $base;
-	$comms = $base->prepare("SELECT COUNT(*) AS compteurbillets FROM billets WHERE auteur = :author ");
+	$comms = $base->prepare("SELECT COUNT(*) AS compteurbillets FROM billets WHERE auteur = :author");
 	$comms->execute(array("author"=>$auth));
 
 	$sendcomms = $comms->fetch();
 
 	return $sendcomms["compteurbillets"];
+}
+
+function Ranking($pseudo){
+
+	global $base;
+	$rank = $base->prepare("SELECT permissions.name AS perm FROM permissions, membres WHERE permissions.id = membres.rank AND pseudo = :pseudo");
+	$rank->execute(array("pseudo"=>$pseudo));
+
+	$sendrank = $rank->fetch();
+
+	return $sendrank["perm"];
+	
 }

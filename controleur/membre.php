@@ -22,6 +22,9 @@ $nbcomms = selectComms($_SESSION["pseudo"]);
 //Select posts
 $nbposts = selectPosts($_SESSION["pseudo"]);
 
+//Ranking
+$rank = Ranking($_SESSION["pseudo"]);
+
 //Connexion/déconnexion
 if (isset($_SESSION["pseudo"]))
 {
