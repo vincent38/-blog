@@ -27,7 +27,7 @@ function AffichageCommentaires($id){
 	//Accès à la BDD
 	global $base;
 
-	//Requête d'accès aux 10 derniers billets
+	//Requête d'accès aux commentaires selon billet
 	$askForComments = $base->prepare("SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires WHERE id_billet = :id");
 
 	//exec
@@ -243,4 +243,34 @@ function selectPostsGlobal(){
 	$sendcomms = $comms->fetch();
 
 	return $sendcomms["compteurbillets"];
+}
+
+function AffichageCommentairesGeneral(){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux commentaires selon billet
+	$askForComments = $base->query("SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires ORDER BY id DESC");
+
+	//Fetch all
+	$returnedComments = $askForComments->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedComments;
+}
+
+function AffichagePostsGeneral(){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux commentaires selon billet
+	$askForPosts = $base->query("SELECT auteur, id, titre, contenu, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datecomment FROM billets ORDER BY id DESC");
+
+	//Fetch all
+	$returnedPosts = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedPosts;
 }

@@ -44,6 +44,7 @@
 								<ul class="nav navbar-nav">
 									<li><a href="index.php">Index</a></li>
 									<li><a href="connexion.php" onclick="alert('Lien désactivé :3'); return false;">Administration</a></li>
+									<li><a href="moderation.php">Modération</a></li>
 									<?php
 									if ($menu == true)
 									{
