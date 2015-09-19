@@ -266,7 +266,7 @@ function AffichagePostsGeneral(){
 	global $base;
 
 	//Requête d'accès aux commentaires selon billet
-	$askForPosts = $base->query("SELECT auteur, id, titre, contenu, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datecomment FROM billets ORDER BY id DESC");
+	$askForPosts = $base->query("SELECT auteur, id, titre, contenu, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datecomment FROM billets ORDER BY id DESC");
 
 	//Fetch all
 	$returnedPosts = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
@@ -274,3 +274,18 @@ function AffichagePostsGeneral(){
 	//return
 	return $returnedPosts;
 }
+
+function AffichageNomsImages(){
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux commentaires selon billet
+	$askForImgNames = $base->query("SELECT id, name FROM pics ORDER BY id");
+
+	//Fetch all
+	$returnedImgNames = $askForImgNames->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedImgNames;
+}
+
