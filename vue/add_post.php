@@ -13,7 +13,7 @@
 				[alert=(success|info|warning|danger)][/alert] -> Alertes visuelles<br />
 			</p>
 			<div class="form-group">
-				<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur">
+				<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur" disabled value="<?php echo $author;?>">
 			</div>
 			<div class="form-group">
 				<label for="titre">Titre de la news : </label><input type="text" class="form-control" name="titre" id="titre"><br />

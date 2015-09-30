@@ -53,6 +53,20 @@ function PostComment($id, $author, $comment){
 											"commentaire"=>htmlspecialchars($comment)));
 }
 
+function PostBillet($id, $author, $comment){
+
+	//Accès à la BDD
+	global $base;
+
+	//Préparer insertion
+	$writenewarticle = $base->prepare("INSERT INTO commentaires(id_billet, auteur, commentaire, date_commentaire) VALUES(:id_billet,:auteur,:commentaire,NOW())");
+	
+	//Insertion
+	$writenewarticle->execute(array("id_billet"=>htmlspecialchars($id),
+											"auteur"=>htmlspecialchars($author),
+											"commentaire"=>htmlspecialchars($comment)));
+}
+
 function AffichageBillet($id){
 
 	//Accès à la BDD
