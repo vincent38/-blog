@@ -68,6 +68,22 @@ function PostBillet($title, $author, $content, $image){
 									"image"=>htmlspecialchars($image)));
 }
 
+function EditBillet($title, $author, $content, $image, $id){
+
+	//Accès à la BDD
+	global $base;
+
+	//Préparer insertion
+	$writenewarticle = $base->prepare("UPDATE billets SET titre=:titre, auteur=:auteur, contenu=:contenu, image=:image WHERE id=:id ");
+	
+	//Insertion
+	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
+									"auteur"=>htmlspecialchars($author),
+									"contenu"=>htmlspecialchars($content),
+									"image"=>htmlspecialchars($image),
+									"id"=>$id));
+}
+
 function AffichageBillet($id){
 
 	//Accès à la BDD

@@ -33,7 +33,7 @@
 											$texte=substr($texte,0,$lastword);
 											$texte.="...";
 										}
-								echo "<tr><th>".$post["id"]."</th><th>Post publié par ".$post["auteur"]." ".$post["datecomment"]." avec le titre : ".$post["titre"]." - ".$texte."</th><th><a href=edition.php?id=".$post["id"].">Editer</a> - <a href=suppressionbillet.php?id=".$post["id"].">Supprimer</a></th>";
+								echo "<tr><th>".$post["id"]."</th><th>Post publié par ".$post["auteur"]." ".$post["datecomment"]." avec le titre : ".$post["titre"]." - ".$texte."</th><th><a href=edit_post.php?id=".$post["id"].">Editer</a> - <a href=suppressionbillet.php?id=".$post["id"].">Supprimer</a></th>";
 							}
 						}
 						?>
