@@ -50,6 +50,12 @@
 					?>
 				</select>
 			</div>
+			<div class="checkbox">
+			  <label>
+			    <input type="checkbox" <?php if ($postToEdit["available"] == 0) {echo " checked ";}?> name="available" value="set :D">
+			    Ne pas publier l'article : celui-ci n'apparaîtra pas sur la page d'accueil et ne sera pas accessible publiquement.
+			  </label>
+			</div>
 			<input name="id" id="id" hidden value="<?php echo $_GET["id"];?>">
 			<input type="submit" class="btn btn-default"/>
 		</form>

@@ -13,7 +13,7 @@ function AffichageIndex(){
 	global $base;
 
 	//Requête d'accès aux 10 derniers billets
-	$askForPosts = $base->query("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image FROM billets WHERE id >= 1 ORDER BY id DESC LIMIT 0,10");
+	$askForPosts = $base->query("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 ORDER BY id DESC LIMIT 0,10");
 
 	//Fetch all
 	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
@@ -53,35 +53,37 @@ function PostComment($id, $author, $comment){
 											"commentaire"=>htmlspecialchars($comment)));
 }
 
-function PostBillet($title, $author, $content, $image){
+function PostBillet($title, $author, $content, $image, $available){
 
 	//Accès à la BDD
 	global $base;
 
 	//Préparer insertion
-	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image) VALUES(:titre,:auteur,:contenu,NOW(),:image)");
-	
-	//Insertion
-	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
-									"auteur"=>htmlspecialchars($author),
-									"contenu"=>htmlspecialchars($content),
-									"image"=>htmlspecialchars($image)));
-}
-
-function EditBillet($title, $author, $content, $image, $id){
-
-	//Accès à la BDD
-	global $base;
-
-	//Préparer insertion
-	$writenewarticle = $base->prepare("UPDATE billets SET titre=:titre, auteur=:auteur, contenu=:contenu, image=:image WHERE id=:id ");
+	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image, available) VALUES(:titre,:auteur,:contenu,NOW(),:image, :available)");
 	
 	//Insertion
 	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
 									"auteur"=>htmlspecialchars($author),
 									"contenu"=>htmlspecialchars($content),
 									"image"=>htmlspecialchars($image),
-									"id"=>$id));
+									"available"=>$available));
+}
+
+function EditBillet($title, $author, $content, $image, $id, $available){
+
+	//Accès à la BDD
+	global $base;
+
+	//Préparer insertion
+	$writenewarticle = $base->prepare("UPDATE billets SET titre=:titre, auteur=:auteur, contenu=:contenu, image=:image, available=:available WHERE id=:id ");
+	
+	//Insertion
+	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
+									"auteur"=>htmlspecialchars($author),
+									"contenu"=>htmlspecialchars($content),
+									"image"=>htmlspecialchars($image),
+									"id"=>$id,
+									"available"=>$available));
 }
 
 function AffichageBillet($id){
@@ -90,7 +92,7 @@ function AffichageBillet($id){
 	global $base;
 
 	//Requête d'accès au billet demandé
-	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image FROM billets WHERE id = :id");
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE id = :id");
 
 	//Query
 	$askForPosts->execute(array("id"=>$id));
@@ -297,7 +299,7 @@ function AffichagePostsGeneral(){
 	global $base;
 
 	//Requête d'accès aux commentaires selon billet
-	$askForPosts = $base->query("SELECT auteur, id, titre, contenu, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datecomment FROM billets ORDER BY id DESC");
+	$askForPosts = $base->query("SELECT auteur, id, titre, contenu, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datecomment, available FROM billets ORDER BY id DESC");
 
 	//Fetch all
 	$returnedPosts = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
@@ -320,3 +322,15 @@ function AffichageNomsImages(){
 	return $returnedImgNames;
 }
 
+function deleteBillet($id){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès au billet demandé
+	$delete = $base->prepare("DELETE FROM billets WHERE id = :id");
+
+	//Query
+	$delete->execute(array("id"=>$id));
+
+}

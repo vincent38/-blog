@@ -40,6 +40,7 @@ foreach ($posts as $cle => $post)
 	$posts["cle"]["titre"] = htmlspecialchars($post["titre"]);
 	$posts["cle"]["auteur"] = htmlspecialchars($post["auteur"]);
 	$posts["cle"]["contenu"] = nl2br(htmlspecialchars($post["contenu"]));
+	$posts["cle"]["available"] = $post["available"];
 }
 
 include_once("vue/moderation.php");

@@ -33,12 +33,20 @@
 											$texte=substr($texte,0,$lastword);
 											$texte.="...";
 										}
-								echo "<tr><th>".$post["id"]."</th><th>Post publié par ".$post["auteur"]." ".$post["datecomment"]." avec le titre : ".$post["titre"]." - ".$texte."</th><th><a href=edit_post.php?id=".$post["id"].">Editer</a> - <a href=suppressionbillet.php?id=".$post["id"].">Supprimer</a></th>";
+								if ($post["available"] == 0)
+								{
+									$state = '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>';
+								}
+								else
+								{
+									$state = '<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>';
+								}
+								echo "<tr><th>".$post["id"]."</th><th>".$state."</th><th>Post publié par ".$post["auteur"]." ".$post["datecomment"]." avec le titre : ".$post["titre"]." - ".$texte."</th><th><a href=edit_post.php?id=".$post["id"].">Editer</a> - <a href='moderation.php#' onclick='if (confirm(\"Etes-vous sûr de vouloir supprimer ce post ? Cette action est irréversible !\")) {document.location.href=\"delete_post.php?id=".$post["id"]."\";}' return false;>Supprimer</a></th>";
 							}
 						}
 						?>
 						<thead>
-							<tr><th>ID</th><th>Commentaires</th><th>Actions</th></tr>
+							<tr><th>ID</th><th>Disponibilité</th><th>Billets</th><th>Actions</th></tr>
 						</thead>
 						</table>
 						</div>

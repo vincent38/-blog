@@ -43,14 +43,23 @@ $post = false;
 //Détection si billet présent sur POST -> Envoi du billet
 if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu"]) AND isset($_POST["pic"]) AND !empty($_POST["titre"]) AND !empty($_POST["auteur"]) AND !empty($_POST["contenu"]))
 		{
+			if (!isset($_POST["available"]))
+			{
+				$available = 1;
+			}
+			else
+			{
+				$available = 0;
+			}
+
 			if (isset($_POST["pic"]))
 			{
-				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], $_POST["pic"]);
+				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], $_POST["pic"], $available);
 				$post = true;
 			}
 			else
 			{
-				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], "");
+				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], "", $available);
 				$post = true;
 			}
 			

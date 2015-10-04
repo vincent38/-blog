@@ -62,15 +62,24 @@ $post = false;
 //Détection si billet présent sur POST -> Modification du billet
 if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu"]) AND isset($_POST["pic"]) AND !empty($_POST["titre"]) AND !empty($_POST["auteur"]) AND !empty($_POST["contenu"]))
 		{
+			if (!isset($_POST["available"]))
+			{
+				$available = 1;
+			}
+			else
+			{
+				$available = 0;
+			}
+
 			if (isset($_POST["pic"]))
 			{
-				EditBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], $_POST["pic"], $_POST["id"]);
+				EditBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], $_POST["pic"], $_POST["id"], $available);
 				$post = true;
 				$alarmNoPostDetected = false;
 			}
 			else
 			{
-				EditBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], "", $_POST["id"]);
+				EditBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], "", $_POST["id"], $available);
 				$post = true;
 				$alarmNoPostDetected = false;
 			}
