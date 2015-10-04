@@ -23,7 +23,7 @@
 												echo $ShowImg;
 											}
 											//BBCODE-like
-											$billet["contenu"] = preg_replace("#\[alert=(success|info|warning|danger)\](.+)\[/alert\]#isU","<div class=\"alert alert-$1\" role=\"alert\">$2</div>",$billet["contenu"]); //bold
+											$billet["contenu"] = preg_replace("#\[alert=(success|info|warning|danger)\](.+)\[/alert\]#isU","<div class=\"alert alert-$1\" role=\"alert\">$2</div>",$billet["contenu"]); //alert boxes
 											$billet["contenu"] = preg_replace("#\[b\](.+)\[/b\]#isU","<strong>$1</strong>",$billet["contenu"]); //bold
 											$billet["contenu"] = preg_replace("#\[i\](.+)\[/i\]#isU","<em>$1</em>",$billet["contenu"]); //italic
 											$billet["contenu"] = preg_replace("#\[color=(blue|red|green|\#[a-z0-9]{6})\](.+)\[/color\]#isU","<span style=\"color: $1\">$2</strong>",$billet["contenu"]); //color
@@ -35,7 +35,7 @@
 										<div class="caption">
 											<h2><?php echo $billet["titre"]; ?></h2>
 											<h3>Ecrit par <?php echo $billet["auteur"]; ?> <?php echo $billet["datewrote"]; ?></h3>
-											<?php echo $billet["contenu"]; ?><br />
+											<?php echo nl2br($billet["contenu"]); ?><br />
 											<a href="commentaires.php?id=<?php echo $billet['id']; ?>">Voir les commentaires --></a>
 										</div>
 									</div>

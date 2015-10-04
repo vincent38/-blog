@@ -32,7 +32,7 @@
 									<div class="caption">
 										<h2><?php echo $billets["titre"]; ?></h2>
 										<h3>Ecrit par <?php echo $billets["auteur"]; ?> <?php echo $billets["datewrote"]; ?></h3>
-										<?php echo $billets["contenu"]; ?><br />
+										<?php echo nl2br($billets["contenu"]); ?><br />
 									</div>
 								</div>
 							<?php
