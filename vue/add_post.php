@@ -27,7 +27,7 @@
 			</div>
 			<div class="form-group">
 				<label for="pic">Image à associer : </label>
-				<select class="form-control" name="picture" id="pic">
+				<select class="form-control" name="pic" id="pic">
 					<option value="">Aucune image</option>
 					<?php
 					$checker = 1;

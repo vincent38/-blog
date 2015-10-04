@@ -32,11 +32,11 @@
 				<label for="contenu">Contenu de la news : </label><textarea name="contenu" class="form-control" id="contenu" rows="30" ><?php echo htmlspecialchars($postToEdit["contenu"]);?></textarea><br />
 			</div>
 			<div class="form-group">
-				<label for="pic">Image à associer : </label>
-				<select class="form-control" name="picture" id="pic">
+				<label for="picture">Image à associer : </label>
+				<select class="form-control" name="pic" id="picture">
 					<?php
 					echo "<option value='".$postToEdit["image"]."'>Image par défaut (aucune si vide) : ".$postToEdit["image"]."</option>";
-					echo "<option value=\"\">Aucune image</option>";
+					echo "<option value=''>Aucune image</option>";
 					$checker = 1;
 					foreach ($listepics as $pic)
 					{
