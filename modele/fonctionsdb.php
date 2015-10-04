@@ -53,18 +53,19 @@ function PostComment($id, $author, $comment){
 											"commentaire"=>htmlspecialchars($comment)));
 }
 
-function PostBillet($id, $author, $comment){
+function PostBillet($title, $author, $content, $image){
 
 	//Accès à la BDD
 	global $base;
 
 	//Préparer insertion
-	$writenewarticle = $base->prepare("INSERT INTO commentaires(id_billet, auteur, commentaire, date_commentaire) VALUES(:id_billet,:auteur,:commentaire,NOW())");
+	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image) VALUES(:titre,:auteur,:contenu,NOW(),:image)");
 	
 	//Insertion
-	$writenewarticle->execute(array("id_billet"=>htmlspecialchars($id),
-											"auteur"=>htmlspecialchars($author),
-											"commentaire"=>htmlspecialchars($comment)));
+	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
+									"auteur"=>htmlspecialchars($author),
+									"contenu"=>htmlspecialchars($content),
+									"image"=>htmlspecialchars($image)));
 }
 
 function AffichageBillet($id){

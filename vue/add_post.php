@@ -1,7 +1,11 @@
 		<?php
 		include_once("includes/header.php");
+		if ($post)
+		{
+			echo "<div class=\"alert alert-success\" role=\"alert\">Le billet a été publié :)<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+		}
 		?>
-		<form method="post" action="posterarticle.php">
+		<form method="post" action="add_post.php">
 			<h2 style="text-align: center;">Poster un nouvel article</h2>
 			<p>
 				Balises BBCODE acceptées :<br />
@@ -13,7 +17,7 @@
 				[alert=(success|info|warning|danger)][/alert] -> Alertes visuelles<br />
 			</p>
 			<div class="form-group">
-				<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur" disabled value="<?php echo $author;?>">
+				<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur" readonly value="<?php echo $author;?>">
 			</div>
 			<div class="form-group">
 				<label for="titre">Titre de la news : </label><input type="text" class="form-control" name="titre" id="titre"><br />
