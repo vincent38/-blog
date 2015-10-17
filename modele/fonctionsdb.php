@@ -334,3 +334,34 @@ function deleteBillet($id){
 	$delete->execute(array("id"=>$id));
 
 }
+
+function deleteComment($id){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès au billet demandé
+	$delete = $base->prepare("DELETE FROM commentaires WHERE id = :id");
+
+	//Query
+	$delete->execute(array("id"=>$id));
+
+}
+
+function AffichageComment($id){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès au billet demandé
+	$askForComments = $base->prepare("SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires WHERE id = :id");
+
+	//Query
+	$askForComments->execute(array("id"=>$id));
+
+	//Fetch all
+	$returnedData = $askForComments->fetch();
+
+	//return
+	return $returnedData;
+}

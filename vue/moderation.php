@@ -9,7 +9,7 @@
 						{
 							if(!empty($comment["id"]))
 							{
-								echo "<tr><th>".$comment['id']."</th><th>Commentaire publié par ".$comment["auteur"]." ".$comment["datewrote"]." : ".$comment["commentaire"]."</th><th><a href=suppression.php?id=".$comment["id"].">Supprimer le commentaire</a></th></tr>";
+								echo "<tr><th>".$comment['id']."</th><th>Commentaire publié par ".$comment["auteur"]." ".$comment["datewrote"]." : ".$comment["commentaire"]."</th><th><a href='moderation.php#' onclick='if (confirm(\"Etes-vous sûr de vouloir supprimer ce commentaire ? Cette action est irréversible !\")) {document.location.href=\"delete_comment.php?id=".$comment["id"]."\";}' return false;>Supprimer le commentaire</a></th></tr>";
 							}
 						}
 						?>
@@ -41,7 +41,7 @@
 								{
 									$state = '<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>';
 								}
-								echo "<tr><th>".$post["id"]."</th><th>".$state."</th><th>Post publié par ".$post["auteur"]." ".$post["datecomment"]." avec le titre : ".$post["titre"]." - ".$texte."</th><th><a href=edit_post.php?id=".$post["id"].">Editer</a> - <a href='moderation.php#' onclick='if (confirm(\"Etes-vous sûr de vouloir supprimer ce post ? Cette action est irréversible !\")) {document.location.href=\"delete_post.php?id=".$post["id"]."\";}' return false;>Supprimer</a></th>";
+								echo "<tr><th>".$post["id"]."</th><th>".$state."</th><th>Post publié par ".$post["auteur"]." ".$post["datecomment"]." avec le titre : ".$post["titre"]." - ".$texte."</th><th><a href='edit_post.php?id=".$post["id"]."''>Editer</a> - <a href='moderation.php#' onclick='if (confirm(\"Etes-vous sûr de vouloir supprimer ce post ? Cette action est irréversible !\")) {document.location.href=\"delete_post.php?id=".$post["id"]."\";}' return false;>Supprimer</a></th>";
 							}
 						}
 						?>
