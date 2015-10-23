@@ -365,3 +365,15 @@ function AffichageComment($id){
 	//return
 	return $returnedData;
 }
+
+function getUsers()
+{
+	//Vérifie si le pseudo existe déjà dans la BDD
+
+	global $base;
+	$list = $base->query("SELECT * FROM membres");
+
+	$returnList = $list->fetchAll(PDO::FETCH_ASSOC);
+
+	return $returnList;
+}

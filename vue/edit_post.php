@@ -37,15 +37,11 @@
 					<?php
 					echo "<option value='".$postToEdit["image"]."'>Image par défaut (aucune si vide) : ".$postToEdit["image"]."</option>";
 					echo "<option value=''>Aucune image</option>";
-					$checker = 1;
 					foreach ($listepics as $pic)
 					{
-						//Checker qui élimine les doublons de la liste via un raisonnement simpliste
-						if ($pic["id"] == $checker)
-						{
-							echo "<option value='".$pic["name"]."'>".$pic["name"]."</option>";
-						}
-						$checker += 1;
+
+						echo "<option value='".$pic["name"]."'>".$pic["name"]."</option>";
+
 					}
 					?>
 				</select>

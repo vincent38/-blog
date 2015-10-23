@@ -50,7 +50,7 @@
 										if ($permissions["miaounet_admin"] == "1")
 										{
 											?>
-											<li><a href="connexion.php" onclick="alert('Lien désactivé :3'); return false;">Administration</a></li>
+											<li><a href="admin.php">Administration</a></li>
 											<?php
 										}
 										if ($permissions["miaounet_mod"] == "1")
