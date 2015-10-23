@@ -128,7 +128,7 @@ function inscriptionMembre($pseudo, $pass, $mail)
 	$insertmember = $base->prepare("INSERT INTO membres(pseudo, pass, mail, date_inscription, rank) VALUES (:pseudo, :pass, :mail, NOW(), 3)");
 	$insertmember->execute(array("pseudo"=>$pseudo,
 								 "pass"=>$pass,
-								 "mail"=>$mail,));
+								 "mail"=>$mail));
 }
 
 function pseudoAlreadyExists($pseudo)
@@ -376,4 +376,26 @@ function getUsers()
 	$returnList = $list->fetchAll(PDO::FETCH_ASSOC);
 
 	return $returnList;
+}
+
+function getUser($id)
+{
+	//Vérifie si le pseudo existe déjà dans la BDD
+
+	global $base;
+	$list = $base->prepare("SELECT * FROM membres WHERE id = :id");
+	$list->execute(array("id"=>$id));
+
+	$returnData = $list->fetch();
+
+	return $returnData;
+}
+
+function setRank($id, $rank)
+{
+	global $base;
+
+	$userToSet = $base->prepare("UPDATE membres SET rank = :rank WHERE id = :id");
+	$userToSet->execute(array("rank"=>$rank,
+							  "id"=>$id));
 }

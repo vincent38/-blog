@@ -17,7 +17,7 @@
 									<?php
 									foreach ($users as $user)
 									{
-										echo "<tr><td>".$user["pseudo"]."</td><td>".$user["date_inscription"]."</td><td><select name='rank' id='".$user["pseudo"]."'><option value='".$user["rank"]."'>Rang actuel : ".Ranking($user["pseudo"])."</option><option value='1'>Banni</option><option value='2'>Utilisateur standard / pas de permission</option><option value='3'>Membre</option><option value='4'>Rédacteur/Modérateur</option><option value='5'>Administrateur</option></select></td></tr>";
+										echo "<tr><td>".$user["pseudo"]."</td><td>".$user["date_inscription"]."</td><td>Rang actuel : ".Ranking($user["pseudo"])." - <a href='edit_rank.php?id=".$user["id"]."'>Editer le rang</a></td></tr>";
 									}
 									?>
 								</tbody>
