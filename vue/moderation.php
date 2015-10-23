@@ -2,6 +2,11 @@
 					//Ajout du header commun
 					include_once("includes/header.php");
 					?>
+						<h2 style="text-align: center;">Bienvenue sur l'espace de modération !</h2>
+						<div class="well">
+							<a class="btn btn-default" href="add_post.php" role="button">Créer un nouvel article</a>
+							<a class="btn btn-default" href="upload.php" role="button">Importer une nouvelle image</a>
+						</div>
 						<h2 style="text-align: center;">Liste des commentaires postés</h2>
 						<table class="table">
 						<?php

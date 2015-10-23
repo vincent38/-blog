@@ -5,9 +5,10 @@
 					{
 						if (!empty($status))
 						{
-							echo $status;
+							echo "<div class='".$box."'role='alert'>".$status."</div>";
 						}
 						?>
+							<h2 style="text-align: center;">Connexion :</h2>
 							<form method="post" action="connexion.php">
 								<div class="form-group">
 									<label for="pseudo">Pseudonyme : </label><input class="form-control" type="text" name="pseudo" id="pseudo" />
@@ -24,7 +25,7 @@
 					}
 					else
 					{
-						echo $status;
+						echo "<div class='".$box."'role='alert'>".$status."</div>";
 					}
 					?>
 				</div>

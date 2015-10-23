@@ -30,15 +30,14 @@
 							<select class="form-control" name="pic" id="pic">
 								<option value="">Aucune image</option>
 								<?php
-								$checker = 1;
+								$latest = "set";
 								foreach ($listepics as $pic)
 								{
-									//Checker qui élimine les doublons de la liste via un raisonnement simpliste
-									if ($pic["id"] == $checker)
+									if ($latest != $pic["name"])
 									{
 										echo "<option value='".$pic["name"]."'>".$pic["name"]."</option>";
+										$latest = $pic["name"];
 									}
-									$checker += 1;
 								}
 								?>
 							</select>

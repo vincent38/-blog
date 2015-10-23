@@ -176,7 +176,7 @@ function setSessionUser($pseudo)
 {
 	//Définit les variables de session
 	global $base;
-	$userData = $base->prepare("SELECT pseudo, id, mail, pass, DATE_FORMAT(date_inscription, 'le %d/%m/%Y') AS date_i FROM membres WHERE pseudo=:pseudo");
+	$userData = $base->prepare("SELECT pseudo, id, mail, pass, DATE_FORMAT(date_inscription, 'le %d/%m/%Y') AS date_i, rank FROM membres WHERE pseudo=:pseudo");
 	$userData->execute(array("pseudo"=>$pseudo));
 
 	$returnedData = $userData->fetch();
@@ -185,6 +185,7 @@ function setSessionUser($pseudo)
 	$_SESSION["id"] = $returnedData["id"];
 	$_SESSION["mail"] = $returnedData["mail"];
 	$_SESSION["date"] = $returnedData["date_i"];
+	$_SESSION["rank"] = $returnedData["rank"];
 }
 
 /**
@@ -398,4 +399,21 @@ function setRank($id, $rank)
 	$userToSet = $base->prepare("UPDATE membres SET rank = :rank WHERE id = :id");
 	$userToSet->execute(array("rank"=>$rank,
 							  "id"=>$id));
+}
+
+function checkPosNumberImg()
+{
+	global $base;
+	$checkposnumber = $base->query("SELECT COUNT(*) AS totalimg FROM pics");
+	$posnumber = $checkposnumber->fetch();
+
+	return $posnumber;
+}
+
+function insertImg($finalName, $desc)
+{
+	global $base;
+	$insertfile = $base->prepare("INSERT INTO pics(name,description) VALUES (:name,:description)");
+	$insertfile->execute(array('name'=>htmlspecialchars($finalName),
+							   'description'=>htmlspecialchars($desc)));
 }

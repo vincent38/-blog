@@ -37,11 +37,14 @@
 					<?php
 					echo "<option value='".$postToEdit["image"]."'>Image par défaut (aucune si vide) : ".$postToEdit["image"]."</option>";
 					echo "<option value=''>Aucune image</option>";
+					$latest = "set";
 					foreach ($listepics as $pic)
 					{
-
-						echo "<option value='".$pic["name"]."'>".$pic["name"]."</option>";
-
+						if ($latest != $pic["name"])
+						{
+							echo "<option value='".$pic["name"]."'>".$pic["name"]."</option>";
+							$latest = $pic["name"];
+						}
 					}
 					?>
 				</select>

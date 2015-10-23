@@ -4,8 +4,8 @@
 				if($deco == true)
 				{
 					?>
-					<p>Vous avez été déconnecté !<br />
-					Les cookies de connexion ont été supprimés.</p>
+					<div class="alert alert-success" role='alert'>Vous avez été déconnecté !<br />
+					Les cookies de connexion ont été supprimés.</div>
 					<?php
 				}
 				else

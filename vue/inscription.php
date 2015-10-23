@@ -9,9 +9,14 @@
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");
+					if (!empty($status))
+					{
+						echo "<div class='".$box."'role='alert'>".$status."</div>";
+					}
 					if ($form == true)
 					{
 						?>
+							<h2 style="text-align: center;">Inscription :</h2>
 							<form method="post" action="inscription.php">
 								<div class="form-group">
 									<label for="pseudo">Pseudonyme : </label><input class="form-control" type="text" name="pseudo" id="pseudo" />

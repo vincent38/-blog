@@ -6,7 +6,13 @@ include_once("modele/connexionsql.php");
 //Inclusion des fonctions relatives aux membres
 include_once("modele/fonctionsdb.php");
 
+if (isset($_SESSION["pseudo"]))
+{
+	header("Location: index.php");
+}
+
 $status = "";
+$box = "";
 
 //Test : si le visiteur a une connexion automatique ou est déjà connecté, on peut refuser l'accès à des pages
 if (isset($_COOKIE["username"]) AND isset($_COOKIE["passwd"]))
@@ -16,11 +22,13 @@ if (isset($_COOKIE["username"]) AND isset($_COOKIE["passwd"]))
 	{
 		setSessionUser($_COOKIE["username"]);
 		$status .= "Connecté !<br />";
+		$box = "alert alert-success";
 		$form = false;
 	}
 	else
 	{
 		$status .= "Vos cookies de connexion sont erronés !";
+		$box = "alert alert-warning";
 		setcookie("username","",time()-3600,null,null,false,true);
 		setcookie("passwd","",time()-3600,null,null,false,true);
 		$form = true;
@@ -40,18 +48,33 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 		if ($reponse == true)
 		{
 			setSessionUser($_POST["pseudo"]);
-			$status .= "Connecté !<br />";
-			$form = false;
-			if (isset($_POST["autoco"]))
+			if ($_SESSION["rank"] == 1)
 			{
-				setcookie("username",$_POST["pseudo"],time()+365*24*3600,null,null,false,true);
-				setcookie("passwd",$cryptedPass,time()+365*24*3600,null,null,false,true);
-				$status .= "Connexion automatique installée pour 1 an !";
+				$status .= "Accès interdit, vous avez été banni par un administrateur :/<br />";
+				$box = "alert alert-danger";
+				$form = true;
+				$_SESSION = array();
+				session_destroy();
+				setcookie("username","",time()-3600,null,null,false,true);
+				setcookie("passwd","",time()-3600,null,null,false,true);
+			}
+			else
+			{
+				$status .= "Connecté !<br />";
+				$box = "alert alert-success";
+				$form = false;
+				if (isset($_POST["autoco"]))
+				{
+					setcookie("username",$_POST["pseudo"],time()+365*24*3600,null,null,false,true);
+					setcookie("passwd",$cryptedPass,time()+365*24*3600,null,null,false,true);
+					$status .= "Connexion automatique installée pour 1 an !";
+				}
 			}
 		}
 		else
 		{
 			$status .= "Nom d'utilisateur ou MdP faux.";
+			$box = "alert alert-warning";
 			$form = true;
 		}
 	}
