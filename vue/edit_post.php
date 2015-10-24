@@ -29,7 +29,7 @@
 				<label for="titre">Titre de la news : </label><input type="text" class="form-control" name="titre" id="titre" value="<?php echo htmlspecialchars($postToEdit["titre"]);?>"><br />
 			</div>
 			<div class="form-group">
-				<label for="contenu">Contenu de la news : </label><textarea name="contenu" class="form-control" id="contenu" rows="30" ><?php echo htmlspecialchars($postToEdit["contenu"]);?></textarea><br />
+				<label for="contenu">Contenu de la news : </label><textarea name="contenu" class="form-control" id="contenu" rows="30" ><?php $postToEdit["contenu"] = preg_replace("#(\\\')#i","'", $postToEdit["contenu"]); echo htmlspecialchars($postToEdit["contenu"]);?></textarea><br />
 			</div>
 			<div class="form-group">
 				<label for="picture">Image à associer : </label>
@@ -58,9 +58,6 @@
 			<input name="id" id="id" hidden value="<?php echo $_GET["id"];?>">
 			<input type="submit" class="btn btn-default"/>
 		</form>
-				</div>
-			</div>
-		</div>
-		<br />
-	</body>
-</html>
+	<?php
+	include_once("includes/footer.php");
+	?>

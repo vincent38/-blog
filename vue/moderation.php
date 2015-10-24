@@ -4,17 +4,24 @@
 					?>
 						<h2 style="text-align: center;">Bienvenue sur l'espace de modération !</h2>
 						<div class="well">
-							<a class="btn btn-default" href="add_post.php" role="button">Créer un nouvel article</a>
-							<a class="btn btn-default" href="upload.php" role="button">Importer une nouvelle image</a>
+							<a class="btn btn-default" href="add_post.php" role="button"><i class="fa fa-plus"></i> Créer un nouvel article</a>
+							<a class="btn btn-default" href="upload.php" role="button"><i class="fa fa-cloud-upload"></i> Importer une nouvelle image</a>
 						</div>
 						<h2 style="text-align: center;">Liste des commentaires postés</h2>
+						<p style="text-align: center;">Cliquez sur un commentaire trop long pour l'afficher en entier</p>
 						<table class="table">
 						<?php
 						foreach ($comments as $comment)
 						{
 							if(!empty($comment["id"]))
 							{
-								echo "<tr><th>".$comment['id']."</th><th>Commentaire publié par ".$comment["auteur"]." ".$comment["datewrote"]." : ".$comment["commentaire"]."</th><th><a href='moderation.php#' onclick='if (confirm(\"Etes-vous sûr de vouloir supprimer ce commentaire ? Cette action est irréversible !\")) {document.location.href=\"delete_comment.php?id=".$comment["id"]."\";}' return false;>Supprimer le commentaire</a></th></tr>";
+								$backup = $comment["commentaire"];
+								if (strlen($comment["commentaire"])>50)
+										{
+											$comment["commentaire"] = substr($comment["commentaire"], 0, 50);
+											$comment["commentaire"].="...";
+										}
+								echo "<tr><th>".$comment['id']."</th><th>Commentaire publié par ".$comment["auteur"]." ".$comment["datewrote"]." : <span onclick='alert(\"".$backup."\");'>".$comment["commentaire"]."</span></th><th><a href='moderation.php#' onclick='if (confirm(\"Etes-vous sûr de vouloir supprimer ce commentaire ? Cette action est irréversible !\")) {document.location.href=\"delete_comment.php?id=".$comment["id"]."\";}' return false;>Supprimer le commentaire</a></th></tr>";
 							}
 						}
 						?>
@@ -54,12 +61,6 @@
 							<tr><th>ID</th><th>Disponibilité</th><th>Billets</th><th>Actions</th></tr>
 						</thead>
 						</table>
-						</div>
-						</div>
-						</div>
-						<br />
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+				<?php
+				include_once("includes/footer.php");
+				?>

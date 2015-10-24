@@ -50,9 +50,6 @@
 						</div>
 						<input type="submit" class="btn btn-default"/>
 					</form>
-				</div>
-			</div>
-		</div>
-		<br />
-	</body>
-</html>
+				<?php
+				include_once("includes/footer.php");
+				?>

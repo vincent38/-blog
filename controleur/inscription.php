@@ -4,6 +4,8 @@ include_once("modele/connexionsql.php");
 //Inclusion des fonctions relatives aux membres
 include_once("modele/fonctionsdb.php");
 
+include_once("apivariables.php");
+
 $box = "";
 $status = "";
 
@@ -12,7 +14,7 @@ if (isset($_SESSION["pseudo"]))
 	header("Location: index.php");
 }
 //Vérification : si les variables POST sont définies, traitement de l'inscription / sinon affichage formulaire
-if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]) AND isset($_POST["mail"]))
+if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]) AND isset($_POST["mail"]) AND isset($_POST["g-recaptcha-response"]))
 {
 	//Vérification de l'email
 	if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,15}$#", $_POST["mail"]))
@@ -28,11 +30,20 @@ if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]
 			{
 				//Les deux MdP sont identiques, cryptage
 				$cryptedPasswd = sha1("y01op4s5wd".$_POST["pass1"]);
-				//On inscrit le tout dans la DB
-				inscriptionMembre($_POST["pseudo"], $cryptedPasswd, $_POST["mail"]);
-				$status = "Inscription terminée ! :D";
-				$box = "alert alert-success";
-				$form = false;
+				if ($_POST["g-recaptcha-response"] == true)
+				{
+					//On inscrit le tout dans la DB
+					inscriptionMembre($_POST["pseudo"], $cryptedPasswd, $_POST["mail"]);
+					$status = "Inscription terminée ! :D";
+					$box = "alert alert-success";
+					$form = false;
+				}
+				else
+				{
+					$status = "Vous n'avez pas validé le captcha !";
+					$box = "alert alert-warning";
+					$form = true;
+				}
 			}
 			else
 			{

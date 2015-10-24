@@ -13,10 +13,13 @@
 			<div class="form-group">
 				<label for="desc">Description de l'image : </label><input type="text" class="form-control" name="desc" id="desc" />
 			</div>
-			<input type="submit" class="btn btn-primary"/>   <input type="reset" class="btn btn-warning"/>
+			<button type="submit" class="btn btn-primary">
+				<i class="fa fa-cloud-upload"></i> Uploader l'image
+			</button>
+			<button type="submit" class="btn btn-warning">
+				<i class="fa fa-eraser"></i> Réinitialiser
+			</button>
 		</form> 
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+	<?php
+	include_once("includes/footer.php");
+	?>

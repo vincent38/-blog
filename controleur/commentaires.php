@@ -18,17 +18,12 @@ include_once("modele/fonctionsdb.php");
 include_once("apivariables.php");
 
 //Ajouter un commentaire
-if (isset($_SESSION["pseudo"]) AND isset($_POST["id_billet"]) AND isset($_POST["commentaire"]) AND isset($_POST["g-recaptcha-response"]))
+if (isset($_SESSION["pseudo"]) AND isset($_POST["id_billet"]) AND isset($_POST["commentaire"]))
 {
-	if ($_POST["g-recaptcha-response"] == true)
-		{
-			PostComment($_POST["id_billet"], $_SESSION["pseudo"], $_POST["commentaire"]);
-			$published = true;
-		}
-		else
-		{
-			$published = false;
-		}
+	
+		PostComment($_POST["id_billet"], $_SESSION["pseudo"], $_POST["commentaire"]);
+		$published = true;
+		
 }
 
 //PRINT COMMENT FORM

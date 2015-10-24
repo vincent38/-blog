@@ -51,10 +51,8 @@
 					<p style="text-align: center">Rang : <?php echo $rank; ?></p>
 					<p style="text-align: center">Nombre de commentaires : <?php echo $nbcomms; ?></p>
 					<p style="text-align: center">Nombre de posts : <?php echo $nbposts; ?></p>
-					<div id="comment" style="width: 900px; height: 500px; display: block; margin-left: auto; margin-right: auto;"></div>
-					<div id="post" style="width: 900px; height: 500px; display: block; margin-left: auto; margin-right: auto;"></div>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+					<?php if ($nbcommstempG != 0) { ?><div id="comment" style="width: 900px; height: 500px; display: block; margin-left: auto; margin-right: auto;"></div><?php } ?>
+					<?php if ($nbpoststempG != 0) { ?><div id="post" style="width: 900px; height: 500px; display: block; margin-left: auto; margin-right: auto;"></div><?php } ?>
+				<?php
+				include_once("includes/footer.php");
+				?>

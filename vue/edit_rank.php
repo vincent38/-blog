@@ -31,8 +31,6 @@
 							</table>
 							<input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>" />
 						</form>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+				<?php
+				include_once("includes/footer.php");
+				?>

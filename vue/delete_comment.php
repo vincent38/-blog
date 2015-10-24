@@ -17,8 +17,6 @@
 						echo "<div class=\"alert alert-info\" role=\"alert\">Le système de suppression n'a pas été chargé.<br />Cause : Commentaire non défini, ou inexistant.<br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
 					}
 					?>
-				</div>
-			</div>
-		</div>		
-	</body>
-</html>
+				<?php
+				include_once("includes/footer.php");
+				?>

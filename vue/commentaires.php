@@ -39,7 +39,8 @@
 						}
 						else
 						{
-							echo "[ERREUR] Aucun post ne porte l'ID renseignée. Celui-ci n'existe pas (ou plus). Sorry :/"; 
+							echo "<div class=\"alert alert-danger\" role=\"alert\">[ERREUR] Aucun post ne porte l'ID renseignée. Celui-ci n'existe pas (ou plus). Sorry :/</div>"; 
+							include_once("includes/footer.php");
 							die;
 						}
 					?>
@@ -52,12 +53,14 @@
 							if (!empty($comment["id"]))
 							{
 								echo "<div class='well well-sm'>";
+								echo "<img style=\"width: 80px; height: 80px; margin-right: 15px;  float: left\" src='".get_gravatar(gatherMail($comment["auteur"]))."' alt='".$comment["auteur"]."' class=\"img-circle\"/>";
 								echo "<h4>".$comment["auteur"]." a écrit ".$comment["datewrote"]." :</h4>";
-								echo "<p>".$comment["commentaire"]."</p></div>";
+								echo "<p>".$comment["commentaire"]."</p><br /></div>";
 							}
 						}
 					}
 					?>
+					<br />
 					<!--Formulaire pour poster un commentaire-->
 					<?php
 						if ($form == true)
@@ -70,14 +73,13 @@
 									<input disabled type="text" name="auteur" id="auteur" class="form-control" value="<?php echo $_SESSION["pseudo"]; ?>">
 								</div>				
 								<div class="form-group">
-									<label for="commentaire">Commentaire : </label>
-									<input type="text" class="form-control" name="commentaire" id="commentaire" />
+									<label for="commentaire">Commentaire (130 caractères maximum) : </label>
+									<input type="text" class="form-control" name="commentaire" id="commentaire" maxlength="130" />
 								</div>
 								<input type="hidden" name="id_billet" id="titre" value="<?php echo $_GET["id"]; ?>">
-								<div class="form-group">
-									<div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
-								</div>
-								<input type="submit" class="btn btn-default"/>
+								<button type="submit" class="btn btn-success">
+					                <i class="fa fa-commenting"></i> Envoyer le commentaire
+					            </button>
 							</form>
 							<?php
 						}
@@ -85,9 +87,5 @@
 						{
 							echo $error;
 						}
+						include_once("includes/footer.php");
 					?>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>

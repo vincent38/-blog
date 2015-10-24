@@ -16,7 +16,7 @@
 					if ($form == true)
 					{
 						?>
-							<h2 style="text-align: center;">Inscription :</h2>
+							<h2 style="text-align: center;">Inscription - tous les champs sont obligatoires:</h2>
 							<form method="post" action="inscription.php">
 								<div class="form-group">
 									<label for="pseudo">Pseudonyme : </label><input class="form-control" type="text" name="pseudo" id="pseudo" />
@@ -30,13 +30,14 @@
 								<div class="form-group">
 									<label for="pass2">Confirmez mot de passe : </label><input class="form-control" type="password" name="pass2" id="pass2" />
 								</div>
-								<input class="btn btn-default" type="submit" />
+								<div class="form-group">
+									<label>Captcha :</label><div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
+								</div>
+								<button type="submit" class="btn btn-default">
+					                <i class="fa fa-user-plus"></i> Inscription
+					            </button>
 							</form>
 						<?php
 					}
-					?>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+				include_once("includes/footer.php");
+				?>

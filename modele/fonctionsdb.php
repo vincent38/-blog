@@ -153,12 +153,27 @@ function pseudoAlreadyExists($pseudo)
 	}
 }
 
+function gatherMail($pseudo)
+{
+	//Vérifie si le pseudo existe déjà dans la BDD
+
+	global $base;
+	$gatherMail = $base->prepare("SELECT mail FROM membres WHERE pseudo=:pseudo ");
+	$gatherMail->execute(array("pseudo"=>$pseudo));
+
+	$Mail = $gatherMail->fetch();
+
+	//On renvoie une réponse : true si le pseudo existe déjà, false sinon
+
+	return $Mail["mail"];
+}
+
 function connexionMembre($pseudo, $pass)
 {
 	//Vérifie si l'utilisateur existe, et si le mot de passe est bon : true si tout est ok, false sinon
 	global $base;
 	$userExists = $base->prepare("SELECT pseudo FROM membres WHERE pseudo=:pseudo AND pass=:pass");
-	$userExists->execute(array("pseudo"=>$pseudo,"pass"=>$pass));
+	$userExists->execute(array("pseudo"=>htmlspecialchars($pseudo),"pass"=>htmlspecialchars($pass)));
 
 	$returnedUser = $userExists->fetch();
 

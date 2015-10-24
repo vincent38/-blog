@@ -42,9 +42,5 @@
 								<?php
 							}
 						}
-					?>
-				</div>
-			</div>
-		</div>		
-	</body>
-</html>
+				include_once("includes/footer.php");
+				?>

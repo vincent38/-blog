@@ -28,8 +28,6 @@
 								</tbody>
 							</table>
 						</form>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+				<?php
+				include_once("includes/footer.php");
+				?>

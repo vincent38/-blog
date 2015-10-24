@@ -34,15 +34,15 @@
 				<div class="col-8">
 					<!--Header du site-->
 					<header class="page-header">
-						<h1 style="text-align: center;">Bienvenue sur mon blog !</h1>
-						<p style="text-align: center;">Blog en travaux</p>
+						<h1 style="text-align: center;">Bienvenue chez vincent !</h1>
+						<p style="text-align: center;">Un blog sur mon travail, et bien plus.</p>
 					</header>
 					<!--Menu-->
 					<nav class="navbar navbar-default">
 						<div class="container-fluid">
 							<div class="Collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
-									<li><a href="index.php">Index</a></li>
+									<li><a href="index.php"><i class="fa fa-home"></i> Index</a></li>
 									<?php
 									if (!empty($_SESSION))
 									{
@@ -50,28 +50,28 @@
 										if ($permissions["miaounet_admin"] == "1")
 										{
 											?>
-											<li><a href="admin.php">Administration</a></li>
+											<li><a href="admin.php"><i class="fa fa-cog"></i> Administration</a></li>
 											<?php
 										}
 										if ($permissions["miaounet_mod"] == "1")
 										{
 											?>
-											<li><a href="moderation.php">Modération</a></li>
+											<li><a href="moderation.php"><i class="fa fa-commenting"></i> Modération</a></li>
 											<?php
 										}
 									}
 									if ($menu == true)
 									{
 										?>
-										<li><a href="membre.php" ><?php echo "Bonjour, ".$_SESSION["pseudo"]." !"; ?></a></li>
-										<li><a href="deconnexion.php">Déconnexion</a></li></li>
+										<li><a href="membre.php" ><i class="fa fa-user"></i><?php echo " Bonjour, ".$_SESSION["pseudo"]." !"; ?></a></li>
+										<li><a href="deconnexion.php"><i class="fa fa-sign-out"></i> Déconnexion</a></li></li>
 										<?php
 									}
 									else
 									{
 										?>
-										<li><a href="connexion.php">Connexion</a></li></li>
-										<li><a href="inscription.php">Inscription</a></li></li>
+										<li><a href="connexion.php"><i class="fa fa-sign-in"></i> Connexion</a></li></li>
+										<li><a href="inscription.php"><i class="fa fa-user-plus"></i> Inscription</a></li></li>
 										<?php
 									}
 									?>
