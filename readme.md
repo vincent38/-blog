@@ -1,6 +1,15 @@
 [FR] Blog basique
 =====================
 
+A propos
+--------------------
+Ce blog est un petit projet personnel faisant suite à un TP (disponible sur openclassrooms).
+Le code n'est pas optimisé, certaines fonctions sont en double, des mises à jour fréquentes sont prévues.
+Il n'y a pas de POO, et il n'y en aura jamais. Je n'ai pas encore démarré le cours, et je ne préfére pas recoder
+l'intégralité des fonctionnalités.
+
+Enjoy :3
+
 Technologies
 --------------------
 
