@@ -1,3 +1,10 @@
+<!--
+	vue/admin.php par Vincent AUBRIOT
+	Availible @ https://github.com/vincent38/-blog/
+	Contient : Espace d'administration
+	
+	Inclus dans : controleur/admin.php
+-->
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");

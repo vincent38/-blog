@@ -1,3 +1,10 @@
+<!--
+	vue/deconnexion.php par Vincent AUBRIOT
+	Availible @ https://github.com/vincent38/-blog/
+	Contient : Déconnexion
+	
+	Inclus dans : controleur/deconnexion.php
+-->
 				<?php  
 				include_once("includes/header.php");
 

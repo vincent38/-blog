@@ -2,7 +2,7 @@
 /*
 	modele/fonctionsdb.php par Vincent AUBRIOT
 	Availible @ https://github.com/vincent38/-blog/
-	Contient : Fonctions relatives à la BDD - Adapté pour les serveurs hébergés aux USA - intervalle à adapter
+	Contient : Fonctions relatives à la BDD - adapté pour les serveurs FR
 
 	Inclus dans : TOUT
 */
@@ -13,7 +13,7 @@ function AffichageIndex(){
 	global $base;
 
 	//Requête d'accès aux 10 derniers billets
-	$askForPosts = $base->query("SELECT titre, auteur, contenu, id, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 ORDER BY id DESC LIMIT 0,10");
+	$askForPosts = $base->query("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 ORDER BY id DESC LIMIT 0,10");
 
 	//Fetch all
 	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ function AffichageCommentaires($id){
 	global $base;
 
 	//Requête d'accès aux commentaires selon billet
-	$askForComments = $base->prepare("SELECT id, auteur, commentaire, DATE_FORMAT(DATE_ADD(date_commentaire, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires WHERE id_billet = :id");
+	$askForComments = $base->prepare("SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires WHERE id_billet = :id");
 
 	//exec
 	$askForComments->execute(array("id"=>$id));
@@ -92,7 +92,7 @@ function AffichageBillet($id){
 	global $base;
 
 	//Requête d'accès au billet demandé
-	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE id = :id");
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE id = :id");
 
 	//Query
 	$askForPosts->execute(array("id"=>$id));
@@ -191,7 +191,7 @@ function setSessionUser($pseudo)
 {
 	//Définit les variables de session
 	global $base;
-	$userData = $base->prepare("SELECT pseudo, id, mail, pass, DATE_FORMAT(DATE_ADD(date_inscription, INTERVAL 6 HOUR), 'le %d/%m/%Y') AS date_i, rank FROM membres WHERE pseudo=:pseudo");
+	$userData = $base->prepare("SELECT pseudo, id, mail, pass, DATE_FORMAT(date_inscription, 'le %d/%m/%Y') AS date_i, rank FROM membres WHERE pseudo=:pseudo");
 	$userData->execute(array("pseudo"=>$pseudo));
 
 	$returnedData = $userData->fetch();
@@ -300,7 +300,7 @@ function AffichageCommentairesGeneral(){
 	global $base;
 
 	//Requête d'accès aux commentaires selon billet
-	$askForComments = $base->query("SELECT id, auteur, commentaire, DATE_FORMAT(DATE_ADD(date_commentaire, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires ORDER BY id DESC");
+	$askForComments = $base->query("SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires ORDER BY id DESC");
 
 	//Fetch all
 	$returnedComments = $askForComments->fetchAll(PDO::FETCH_ASSOC);
@@ -315,7 +315,7 @@ function AffichagePostsGeneral(){
 	global $base;
 
 	//Requête d'accès aux commentaires selon billet
-	$askForPosts = $base->query("SELECT auteur, id, titre, contenu, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datecomment, available FROM billets ORDER BY id DESC");
+	$askForPosts = $base->query("SELECT auteur, id, titre, contenu, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datecomment, available FROM billets ORDER BY id DESC");
 
 	//Fetch all
 	$returnedPosts = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
@@ -370,7 +370,7 @@ function AffichageComment($id){
 	global $base;
 
 	//Requête d'accès au billet demandé
-	$askForComments = $base->prepare("SELECT id, auteur, commentaire, DATE_FORMAT(DATE_ADD(date_commentaire, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires WHERE id = :id");
+	$askForComments = $base->prepare("SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote FROM commentaires WHERE id = :id");
 
 	//Query
 	$askForComments->execute(array("id"=>$id));

@@ -1,3 +1,10 @@
+<!--
+	vue/membre.php par Vincent AUBRIOT
+	Availible @ https://github.com/vincent38/-blog/
+	Contient : Espace membre privé
+	
+	Inclus dans : controleur/membre.php
+-->
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");

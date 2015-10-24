@@ -1,3 +1,10 @@
+<!--
+	vue/upload.php par Vincent AUBRIOT
+	Availible @ https://github.com/vincent38/-blog/
+	Contient : Ajouter un billet (Modérateur/rédacteur et/ou administrateur)
+	
+	Inclus dans : controleur/upload.php
+-->
 		<?php
 		include_once("includes/header.php");
 		if (!empty($error))

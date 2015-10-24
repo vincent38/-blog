@@ -1,10 +1,9 @@
 <!--
-	vue/index.php par Vincent AUBRIOT
+	vue/inscription.php par Vincent AUBRIOT
 	Availible @ https://github.com/vincent38/-blog/
-	Contient : Page d'accueil du blog, affichage des 10 derniers
-	billets, pagination (AFFICHAGE UNIQUEMENT)
+	Contient : Formulaire d'inscription + traitement
 
-	Inclus dans : controleur/index.php
+	Inclus dans : controleur/inscription.php
 -->
 					<?php
 					//Ajout du header commun

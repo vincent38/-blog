@@ -1,3 +1,10 @@
+<!--
+	vue/connexion.php par Vincent AUBRIOT
+	Availible @ https://github.com/vincent38/-blog/
+	Contient : Formulaire de connexion + traitement
+	
+	Inclus dans : controleur/connexion.php
+-->
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");

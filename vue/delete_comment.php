@@ -1,9 +1,9 @@
 <!--
-	vue/delete_post.php par Vincent AUBRIOT
+	vue/delete_comment.php par Vincent AUBRIOT
 	Availible @ https://github.com/vincent38/-blog/
-	Contient : Système de suppression des billets.
+	Contient : Système de suppression des commentaires.
 
-	Inclus dans : controleur/delete_post.php
+	Inclus dans : controleur/delete_comment.php
 -->
 					<?php
 					//Ajout du header commun

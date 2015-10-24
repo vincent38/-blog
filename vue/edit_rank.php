@@ -1,3 +1,9 @@
+<!--
+	vue/edit_rank.php par Vincent AUBRIOT
+	Availible @ https://github.com/vincent38/-blog/
+	Contient : Modification des permissions.
+	Inclus dans : controleur/edit_rank.php
+-->
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");
