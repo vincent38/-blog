@@ -52,6 +52,7 @@
 						{
 							if (!empty($comment["id"]))
 							{
+								$comment["commentaire"] = preg_replace("#(\\\')#i","'", $comment["commentaire"]); //'
 								echo "<div class='well well-sm'>";
 								echo "<img style=\"width: 80px; height: 80px; margin-right: 15px;  float: left\" src='".get_gravatar(gatherMail($comment["auteur"]))."' alt='".$comment["auteur"]."' class=\"img-circle\"/>";
 								echo "<h4>".$comment["auteur"]." a écrit ".$comment["datewrote"]." :</h4>";
