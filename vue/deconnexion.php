@@ -4,7 +4,7 @@
 				if($deco == true)
 				{
 					?>
-					<div class="alert alert-success" role='alert'>Vous avez été déconnecté !<br />
+					<div class="alert alert-success" role='alert'><i class="fa fa-check"></i> Vous avez été déconnecté !<br />
 					Les cookies de connexion ont été supprimés.
 					<script type="text/javascript">
 					        window.onload = Init;

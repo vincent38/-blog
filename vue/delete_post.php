@@ -10,11 +10,11 @@
 					include_once("includes/header.php");
 					if ($deleted)
 					{
-						echo "<div class=\"alert alert-info\" role=\"alert\">Le billet a été supprimé. Vous pouvez être fier de vous. Monstre :'(<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+						echo "<div class=\"alert alert-info\" role=\"alert\"><i class=\"fa fa-check\"></i> Le billet a été supprimé. Vous pouvez être fier de vous. Monstre :'(<br /><br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
 					}
 					else
 					{
-						echo "<div class=\"alert alert-info\" role=\"alert\">Le système de suppression n'a pas été chargé.<br />Cause : Post non défini, ou inexistant.<br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+						echo "<div class=\"alert alert-info\" role=\"alert\"><i class=\"fa fa-times\"></i> Le système de suppression n'a pas été chargé.<br />Cause : Post non défini, ou inexistant.<br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
 					}
 					?>
 				<?php

@@ -2,12 +2,12 @@
 		include_once("includes/header.php");
 		if ($post)
 		{
-			echo "<div class=\"alert alert-success\" role=\"alert\">Le billet a été édité :)<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+			echo "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> Le billet a été édité :)<br /><br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
 			die;
 		}
 		if ($alarmNoPostDetected)
 		{
-			echo "<div class=\"alert alert-warning\" role=\"alert\">Le billet demandé n'existe pas !<br />L'éditeur a été automatiquement fermé. :/<br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+			echo "<div class=\"alert alert-warning\" role=\"alert\"><i class=\"fa fa-times\"></i> Le billet demandé n'existe pas !<br />L'éditeur a été automatiquement fermé. :/<br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
 			die;
 		}
 		?>

@@ -39,13 +39,13 @@ if (isset($_SESSION["pseudo"]))
 	else
 	{
 		$form = false;
-		$error = "<h4>Poster un commentaire :</h4><p>Vous n'avez pas les permissions requises pour poster un commentaire !</p><br />";
+		$error = "<h4>Poster un commentaire :</h4><p><i class=\"fa fa-times\"></i> Vous n'avez pas les permissions requises pour poster un commentaire !</p><br />";
 	}
 }
 else
 {
 	$form = false;
-	$error = "<h4>Poster un commentaire :</h4><p>Merci de vous connecter pour pouvoir poster un commentaire !</p><br />";
+	$error = "<h4>Poster un commentaire :</h4><p><i class=\"fa fa-times\"></i> Merci de vous connecter pour pouvoir poster un commentaire !</p><br />";
 }
 
 

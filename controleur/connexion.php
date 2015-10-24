@@ -50,7 +50,7 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 			setSessionUser($_POST["pseudo"]);
 			if ($_SESSION["rank"] == 1)
 			{
-				$status .= "Accès interdit, vous avez été banni par un administrateur :/<br />";
+				$status .= "<i class=\"fa fa-times\"></i> Accès interdit, vous avez été banni par un administrateur :/<br />";
 				$box = "alert alert-danger";
 				$form = true;
 				$_SESSION = array();
@@ -60,7 +60,7 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 			}
 			else
 			{
-				$status .= "Connecté !<br />";
+				$status .= "<i class=\"fa fa-check\"></i> Connecté !<br />";
 				$box = "alert alert-success";
 				$form = false;
 				if (isset($_POST["autoco"]))
@@ -73,7 +73,7 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 		}
 		else
 		{
-			$status .= "Nom d'utilisateur ou MdP faux.";
+			$status .= "<i class=\"fa fa-times\"></i> Nom d'utilisateur ou MdP faux.";
 			$box = "alert alert-warning";
 			$form = true;
 		}

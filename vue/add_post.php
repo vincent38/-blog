@@ -2,7 +2,7 @@
 					include_once("includes/header.php");
 					if ($post)
 					{
-						echo "<div class=\"alert alert-success\" role=\"alert\">Le billet a été publié :)<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+						echo "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> Le billet a été publié :)<br /><br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
 					}
 					?>
 					<form method="post" action="add_post.php">

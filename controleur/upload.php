@@ -45,16 +45,16 @@ if (isset($_FILES["pic"]) AND isset($_POST["desc"]) AND !empty($_POST["desc"]) A
 
 			insertImg($finalname, $_POST["desc"]);
 
-			$error = "<div class=\"alert alert-success\" role=\"alert\">La photo a été importée !<br /><br />Nom : ".$finalname."<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+			$error = "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> La photo a été importée !<br /><br />Nom : ".$finalname."<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
 		}
 		else
 		{
-			$error = "<div class=\"alert alert-danger\" role=\"alert\">Le fichier ne porte pas une extension autorisée !<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+			$error = "<div class=\"alert alert-danger\" role=\"alert\"><i class=\"fa fa-times\"></i> Le fichier ne porte pas une extension autorisée !<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
 		}
 	}
 	else
 	{
-		$error = "<div class=\"alert alert-danger\" role=\"alert\">Le fichier est trop lourd ! (RAPPEL : 8 Mo MAX. !)<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+		$error = "<div class=\"alert alert-danger\" role=\"alert\"><i class=\"fa fa-times\"></i> Le fichier est trop lourd ! (RAPPEL : 8 Mo MAX. !)<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
 	}
 } 
 /*
@@ -66,7 +66,7 @@ else
 
 if (isset($_POST["desc"]) AND empty($_POST["desc"]))
 {
-	$error = "<div class=\"alert alert-danger\" role=\"alert\">Aucune description n'a été entrée !<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+	$error = "<div class=\"alert alert-danger\" role=\"alert\"><i class=\"fa fa-times\"></i> Aucune description n'a été entrée !<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
 }
 
 include_once("vue/upload.php");

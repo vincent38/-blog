@@ -34,34 +34,54 @@ if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]
 				{
 					//On inscrit le tout dans la DB
 					inscriptionMembre($_POST["pseudo"], $cryptedPasswd, $_POST["mail"]);
-					$status = "Inscription terminée ! :D";
+					$status = "<i class=\"fa fa-check\"></i> Inscription terminée ! :D
+								<script type=\"text/javascript\">
+					        window.onload = Init;
+					        var waitTime = 5; // Temps d'attente en seconde
+					        var url = 'connexion.php';     // Lien de destination
+					        var x;
+					        function Init() {
+					                window.document.getElementById('compteur').innerHTML = waitTime;
+					                x = window.setInterval('Decompte()', 1000);
+					        }
+					        function Decompte() {
+					                ((waitTime > 0)) ? (window.document.getElementById('compteur').innerHTML = --waitTime) : (window.clearInterval(x));
+					                if (waitTime == 0) {
+					                        window.location = url;
+					                }
+					                if (waitTime == 1) {
+					                        window.document.getElementById('sec').innerHTML = 'seconde';
+					                }
+					        }
+					    </script>
+					    <p>Vous allez être redirigé automatiquement vers la page de connexion dans <span id='compteur'>5</span> <span id='sec'>secondes</span> :)</p>";
 					$box = "alert alert-success";
 					$form = false;
 				}
 				else
 				{
-					$status = "Vous n'avez pas validé le captcha !";
+					$status = "<i class=\"fa fa-times\"></i> Vous n'avez pas validé le captcha !";
 					$box = "alert alert-warning";
 					$form = true;
 				}
 			}
 			else
 			{
-				$status = "Les mots de passe ne correspondent pas.";
+				$status = "<i class=\"fa fa-times\"></i> Les mots de passe ne correspondent pas.";
 				$box = "alert alert-warning";
 				$form = true;
 			}
 		}
 		else
 		{
-			$status = "Le pseudo est déjà utilisé.";
+			$status = "<i class=\"fa fa-times\"></i> Le pseudo est déjà utilisé.";
 			$box = "alert alert-warning";
 			$form = true;
 		}
 	}
 	else
 	{
-		$status = "L'adresse mail fournie n'est pas conforme.";
+		$status = "<i class=\"fa fa-times\"></i> L'adresse mail fournie n'est pas conforme.";
 		$box = "alert alert-warning";
 		$form = true;
 	}
