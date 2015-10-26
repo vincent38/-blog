@@ -9,6 +9,7 @@
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");
+					
 						//Affichage des 10 derniers billets
 						foreach ($billets as $billet)
 						{

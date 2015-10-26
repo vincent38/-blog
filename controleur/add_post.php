@@ -65,5 +65,6 @@ if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu
 			
 		}
 
+$title = "Edition en cours d'un nouveau billet ...";
 
 include_once("vue/add_post.php");

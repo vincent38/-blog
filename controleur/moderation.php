@@ -43,5 +43,7 @@ foreach ($posts as $cle => $post)
 	$posts["cle"]["available"] = $post["available"];
 }
 
+$title = "MiaouNET - Modération";
+
 include_once("vue/moderation.php");
 ?>

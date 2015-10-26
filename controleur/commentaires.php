@@ -8,6 +8,9 @@
 */
 session_start();
 
+//pub
+$pub = "";
+
 //Inclusion connexionBDD
 include_once("modele/connexionsql.php");
 
@@ -74,6 +77,8 @@ else
 	//Affichage co
 	$menu = false;
 }
+
+$title = $billets["titre"];
 
 //Inclusion vue index 
 include_once("vue/commentaires.php");

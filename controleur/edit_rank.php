@@ -43,5 +43,7 @@ else
 	}
 }
 
+$title = "Modification des permissions pour : ".$user["pseudo"];
+
 include_once("vue/edit_rank.php");
 ?>

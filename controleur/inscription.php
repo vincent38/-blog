@@ -57,12 +57,14 @@ if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]
 					    <p>Vous allez être redirigé automatiquement vers la page de connexion dans <span id='compteur'>5</span> <span id='sec'>secondes</span> :)</p>";
 					$box = "alert alert-success";
 					$form = false;
+					$title = "Vous êtes inscrit ! Bienvenue :)";
 				}
 				else
 				{
 					$status = "<i class=\"fa fa-times\"></i> Vous n'avez pas validé le captcha !";
 					$box = "alert alert-warning";
 					$form = true;
+					$title = "Formulaire d'inscription";
 				}
 			}
 			else
@@ -70,6 +72,7 @@ if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]
 				$status = "<i class=\"fa fa-times\"></i> Les mots de passe ne correspondent pas.";
 				$box = "alert alert-warning";
 				$form = true;
+				$title = "Formulaire d'inscription";
 			}
 		}
 		else
@@ -77,6 +80,7 @@ if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]
 			$status = "<i class=\"fa fa-times\"></i> Le pseudo est déjà utilisé.";
 			$box = "alert alert-warning";
 			$form = true;
+			$title = "Formulaire d'inscription";
 		}
 	}
 	else
@@ -84,11 +88,13 @@ if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]
 		$status = "<i class=\"fa fa-times\"></i> L'adresse mail fournie n'est pas conforme.";
 		$box = "alert alert-warning";
 		$form = true;
+		$title = "Formulaire d'inscription";
 	}
 }
 else
 {
 	$form = true;
+	$title = "Formulaire d'inscription";
 }
 
 //Connexion/déconnexion

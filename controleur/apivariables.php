@@ -9,3 +9,5 @@
 */
 
 $recaptcha_key = "6LfSaAsTAAAAAEfZ0Pm-Upmg_Qm00KCVu6VnVRLN";
+
+$twitter_account = "vincent3897";

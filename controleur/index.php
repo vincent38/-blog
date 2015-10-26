@@ -10,6 +10,9 @@
 
 session_start();
 
+//pub
+$pub = "";
+
 //Inclusion connexionBDD
 include_once("modele/connexionsql.php");
 
@@ -50,6 +53,8 @@ else
 	//Affichage co
 	$menu = false;
 }
+
+$title = "Bienvenue chez vincent !";
 
 //Inclusion vue index
 include_once("vue/index.php");

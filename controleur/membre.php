@@ -2,6 +2,9 @@
 
 session_start();
 
+//pub
+$pub = "";
+
 //Inclusion des ID SQL
 include_once("modele/connexionsql.php");
 //Inclusion des fonctions relatives aux membres
@@ -48,6 +51,8 @@ else
 	//Affichage co
 	$menu = false;
 }
+
+$title = "Bienvenue, ".$_SESSION["pseudo"]." - voici votre profil.";
 
 include_once("vue/membre.php");
 ?>

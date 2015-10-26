@@ -44,5 +44,7 @@ else
 	$deleted = false;
 }
 
+$title = "Suppression de post";
+
 include_once("vue/delete_post.php");
 ?>

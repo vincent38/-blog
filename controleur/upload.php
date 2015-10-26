@@ -25,6 +25,8 @@ if ($access["miaounet_mod"] == "0")
 	header("Location: index.php");
 }
 
+$title = "Uploader une image - 8 mo max.";
+
 //Partie upload images
 
 if (isset($_FILES["pic"]) AND isset($_POST["desc"]) AND !empty($_POST["desc"]) AND $_FILES["pic"]["error"]==0)
@@ -45,16 +47,19 @@ if (isset($_FILES["pic"]) AND isset($_POST["desc"]) AND !empty($_POST["desc"]) A
 
 			insertImg($finalname, $_POST["desc"]);
 
-			$error = "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> La photo a été importée !<br /><br />Nom : ".$finalname."<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+			$error = "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> La photo a été importée !<br /><br />Nom : ".$finalname."<br /><br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
+			$title = $finalname." a été correctement importé !";
 		}
 		else
 		{
-			$error = "<div class=\"alert alert-danger\" role=\"alert\"><i class=\"fa fa-times\"></i> Le fichier ne porte pas une extension autorisée !<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+			$error = "<div class=\"alert alert-danger\" role=\"alert\"><i class=\"fa fa-times\"></i> Le fichier ne porte pas une extension autorisée !<br /><br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
+			$title = "Erreur lors de l'upload :/";
 		}
 	}
 	else
 	{
-		$error = "<div class=\"alert alert-danger\" role=\"alert\"><i class=\"fa fa-times\"></i> Le fichier est trop lourd ! (RAPPEL : 8 Mo MAX. !)<br /><br /><a href=\"index.php\"><-- Revenir au menu de modération !</a></div>";
+		$error = "<div class=\"alert alert-danger\" role=\"alert\"><i class=\"fa fa-times\"></i> Le fichier est trop lourd ! (RAPPEL : 8 Mo MAX. !)<br /><br /><a href=\"moderation.php\"><-- Revenir au menu de modération !</a></div>";
+		$title = "Erreur lors de l'upload :/";
 	}
 } 
 /*

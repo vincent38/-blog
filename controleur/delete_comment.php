@@ -44,5 +44,7 @@ else
 	$deleted = false;
 }
 
+$title = "Suppression de commentaire";
+
 include_once("vue/delete_comment.php");
 ?>

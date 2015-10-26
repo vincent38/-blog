@@ -44,16 +44,19 @@ if (isset($_GET["id"]))
 			if (!empty($postToEdit))
 			{
 				$alarmNoPostDetected = false;
+				$title = "Edition en cours de : ".$postToEdit["titre"];
 			}
 			else
 			{
 				$alarmNoPostDetected = true;
+				$title = "Editeur déchargé.";
 			}
 			
 		}
 		else
 		{
 			$alarmNoPostDetected = true;
+			$title = "Editeur déchargé.";
 		}
 
 //Variables de base
@@ -76,12 +79,14 @@ if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu
 				EditBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], $_POST["pic"], $_POST["id"], $available);
 				$post = true;
 				$alarmNoPostDetected = false;
+				$title = "Post édité :)";
 			}
 			else
 			{
 				EditBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], "", $_POST["id"], $available);
 				$post = true;
 				$alarmNoPostDetected = false;
+				$title = "Post édité :)";
 			}
 			
 		}

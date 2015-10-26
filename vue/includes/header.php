@@ -1,3 +1,7 @@
+<?php
+	header('Content-Type: text/html; charset=utf-8');
+	//UTF-8
+?>
 <!--Début du header-->
 <!DOCTYPE html>
 <html>
@@ -22,12 +26,13 @@
 		<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
 		<!-- End Cookie Consent plugin -->
 		<!--Balise de titre-->
-		<title>Bienvenue sur mon blog !</title>
+		<title><?php echo $title; ?></title>
 	</head>
 	
 	<body>
 		<!-- Corps de la page -->
 		<!--Architecture bootstrap 3 -> 2cols 8cols 2cols -->
+		<?php include_once("controleur/analytics.php"); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-2"></div>

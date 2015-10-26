@@ -35,5 +35,7 @@ foreach ($users as $cle => $user)
 	$users["cle"]["rank"] = $user["rank"];
 }
 
+$title = "MiaouNET - Administration";
+
 include_once("vue/admin.php");
 ?>

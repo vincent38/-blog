@@ -96,5 +96,7 @@ else
 	$menu = false;
 }
 
+$title = "Formulaire de connexion";
+
 include_once("vue/connexion.php")
 ?>

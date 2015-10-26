@@ -23,7 +23,7 @@
 										<td><?php echo $user["pseudo"]; ?></td>
 										<td>
 											<select name='rank' id='rankedit'>
-												<option value='<?php echo $user["rank"]; ?>'>Rang actuel : <?php echo Ranking($user["pseudo"]); ?></option>
+												<option value='<?php echo utf8_encode($user["rank"]); ?>'>Rang actuel : <?php echo Ranking($user["pseudo"]); ?></option>
 												<option value='1'>Banni</option>
 												<option value='2'>Utilisateur standard / pas de permission</option>
 												<option value='3'>Membre</option>
