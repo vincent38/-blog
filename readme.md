@@ -45,9 +45,9 @@ Pour installer la plateforme, il vous faudra approximativement 10 minutes.
 --> Serveur basé en france : Supprimez fonctionsdb.php et enlevez le .old du second fichier.
 
 4- Rendez-vous dans /controleur/
-5- Ouvrez analytics.php et collez votre code analytics
-6- Ouvrez apivariables.php, et collez votre clé reCaptcha et votre nom d'utilisateur twitter (pour un partage de liens avec mention de votre compte)
-8- Ouvrez adsense.php et collez votre code adsense
+5- Ouvrez analytics.php.old et collez votre code analytics, puis supprimez .old
+6- Ouvrez apivariables.php.old, et collez votre clé reCaptcha et votre nom d'utilisateur twitter (pour un partage de liens avec mention de votre compte), puis supprimez.old
+8- Ouvrez adsense.php et collez votre code adsense, puis supprimez .old
 9- Importez createBDD.sql dans votre base de données
 10- Créez un compte sur l'interface web. Choisissez un mot de passe robuste, car vous allez transformer ce compte en compte administrateur.
 11- Ouvrez la table membres sur votre BDD
