@@ -8,6 +8,6 @@
 	Inclus dans : TOUT
 */
 
-$recaptcha_key = "6LfSaAsTAAAAAEfZ0Pm-Upmg_Qm00KCVu6VnVRLN";
+$recaptcha_key = "votre code reCaptcha";
 
-$twitter_account = "vincent3897";
+$twitter_account = "Votre twitter";
