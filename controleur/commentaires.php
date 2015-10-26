@@ -78,6 +78,9 @@ else
 	$menu = false;
 }
 
+$billets["titre"] = preg_replace("#(\\\')#i","'", $billets["titre"]); //'
+$billets["titre"] = preg_replace('#(\\\"")#i','"', $billets["titre"]); //'
+
 $title = $billets["titre"];
 
 //Inclusion vue index 

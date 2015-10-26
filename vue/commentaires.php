@@ -29,6 +29,9 @@
 										$billets["contenu"] = preg_replace("#url!(https?://[a-z0-9._/-]+[a-z0-9A-Z&\?._=-]*)#i", "<a href='$1'>$1</a>", $billets["contenu"]); // url (with url!)
 										$billets["contenu"] = preg_replace("#\[img=(.+)\](https?://[a-z0-9._/-]+[a-z0-9A-Z&\?._=-]*)\[/img\]#isU", "<img src='$2' alt='$1'/>", $billets["contenu"]); //images
 										$billets["contenu"] = preg_replace("#(\\\')#i","'", $billets["contenu"]); //'
+										$billets["contenu"] = preg_replace('#(\\\")#i','"', $billets["contenu"]); //'
+										$billets["titre"] = preg_replace("#(\\\')#i","'", $billets["titre"]); //'
+										$billets["titre"] = preg_replace('#(\\\")#i','"', $billets["titre"]); //'
 										//Fin du BBCODE-like
 									?>
 									<div class="caption">
@@ -59,6 +62,7 @@
 							if (!empty($comment["id"]))
 							{
 								$comment["commentaire"] = preg_replace("#(\\\')#i","'", $comment["commentaire"]); //'
+								$comment["commentaire"] = preg_replace('#(\\\")#i','"', $comment["commentaire"]); //'
 								echo "<div class='well well-sm'>";
 								echo "<img style=\"width: 80px; height: 80px; margin-right: 15px;  float: left\" src='".get_gravatar(gatherMail($comment["auteur"]))."' alt='".$comment["auteur"]."' class=\"img-circle\"/>";
 								echo "<h4>".$comment["auteur"]." a écrit ".$comment["datewrote"]." :</h4>";
