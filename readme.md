@@ -22,7 +22,8 @@ Blog utilisant des technologies telles que :
 * Gravatar, pour une gestion simplifiée des avatars des membres
 * Un BBCODE-Like pour le formattage des articles
 * Google charts pour l'affichage de statistiques
-* Un accés à l'API twitter et facebook, pour une intégration de réseaux sociaux (a venir)
+* Un accés à l'API twitter, pour une intégration de réseaux sociaux
+* Google analytics et adsense pour l'analyse et la publicité
 
 A propos - Contributions
 ---------------
@@ -31,3 +32,24 @@ Ce blog est un projet personnel. Vous pouvez le forker, effectuer des pull reque
 
 Si vous souhaitez vous en servir dans le cadre d'un projet NON-COMMERCIAL, merci de conserver les crédits et le lien vers dans le footer et de m'envoyer un lien vers votre version du blog :D
 
+Installation
+---------------
+Pour installer la plateforme, il vous faudra approximativement 10 minutes.
+
+1- Rendez-vous dans /modele/
+2- Modifiez connexionsql.php.aModifierAvantRenommage avec vos identifiants de connexion à votre BDD, et supprimez .aModifierAvantRenommage
+3- Selon votre installation :
+
+--> Serveur basé dans un pays étranger : Gardez fonctionsdb.php et modifiez les intervalles pour adapter le décalage france/pays hébergeur.
+
+--> Serveur basé en france : Supprimez fonctionsdb.php et enlevez le .old du second fichier.
+
+4- Rendez-vous dans /controleur/
+5- Ouvrez analytics.php et collez votre code analytics
+6- Ouvrez apivariables.php, et collez votre clé reCaptcha et votre nom d'utilisateur twitter (pour un partage de liens avec mention de votre compte)
+8- Ouvrez adsense.php et collez votre code adsense
+9- Importez createBDD.sql dans votre base de données
+10- Créez un compte sur l'interface web. Choisissez un mot de passe robuste, car vous allez transformer ce compte en compte administrateur.
+11- Ouvrez la table membres sur votre BDD
+12- Modifiez le rank de votre compte du 3 au 5.
+13- Terminé ! Vous pouvez maintenent promouvoir des utilisateurs au rang de modérateur/rédacteur, et commencer à rédiger vos premiers billets ! (N'oubliez pas de supprimer createBDD.sql)
