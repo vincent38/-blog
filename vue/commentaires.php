@@ -37,7 +37,7 @@
 									<div class="caption">
 										<h2><?php echo $billets["titre"]; ?></h2>
 										<h3>Ecrit par <?php echo $billets["auteur"]; ?> <?php echo $billets["datewrote"]; ?></h3>
-										<?php echo nl2br($billets["contenu"]); ?><br /><br />
+										<div id="post"><?php echo nl2br($billets["contenu"]); ?><//div><br /><br />
 										<p>
 											<!--Twitter JS - Modifiez le compte twitter via apivariables.php-->
 											<a href="https://twitter.com/share" class="twitter-share-button" data-via="<?php echo $twitter_account; ?>" data-size="large">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
@@ -98,5 +98,28 @@
 						{
 							echo $error;
 						}
+						?>
+						<script>
+						function getPost(){
+							var xhr = new XMLHttpRequest();
+
+							var id = encodeURIComponent(<?php echo $_GET["id"]; ?>);
+
+							xhr.open('GET', "ajax/getPost.php?id="+id);
+
+							xhr.addEventListener("readystatechange", function(){
+								if (xhr.readyState === 4 && xhr.status === 200){
+									document.getElementById("post").innerHTML = xhr.responseText;
+								}
+							},false)
+
+							xhr.send(null);
+
+							setTimeout(getPost,10000);
+						}
+						getPost();
+
+						</script>
+						<?php
 						include_once("includes/footer.php");
 					?>
