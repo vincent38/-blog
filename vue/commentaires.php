@@ -37,6 +37,7 @@
 									<div class="caption">
 										<h2><?php echo $billets["titre"]; ?></h2>
 										<h3>Ecrit par <?php echo $billets["auteur"]; ?> <?php echo $billets["datewrote"]; ?></h3>
+										<h4>Tag : <?php echo Categorie($_GET["id"]); ?></h4>
 										<?php echo nl2br($billets["contenu"]); ?><br /><br />
 										<p>
 											<!--Twitter JS - Modifiez le compte twitter via apivariables.php-->

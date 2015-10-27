@@ -11,7 +11,7 @@
 			die;
 		}
 		?>
-		<form method="post" action="edit_post.php">
+		<form method="post" action="edit_post.php?id=<?php echo $_GET["id"];?>">
 			<h2 style="text-align: center;">Edition en cours de : <?php echo htmlspecialchars($postToEdit["titre"]); ?></h2>
 			<p>
 				Balises BBCODE acceptées :<br />
@@ -23,7 +23,7 @@
 				[alert=(success|info|warning|danger)][/alert] -> Alertes visuelles<br />
 			</p>
 			<div class="form-group">
-				<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur" readonly value="<?php echo htmlspecialchars($postToEdit["auteur"]);?>">
+				<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur" readonly='readonly' value="<?php echo htmlspecialchars($postToEdit["auteur"]);?>">
 			</div>
 			<div class="form-group">
 				<label for="titre">Titre de la news : </label><input type="text" class="form-control" name="titre" id="titre" value="<?php echo htmlspecialchars($postToEdit["titre"]);?>"><br />
@@ -49,6 +49,7 @@
 					?>
 				</select>
 			</div>
+			<p>Tag : <?php echo Categorie($_GET["id"]); ?></p>
 			<div class="checkbox">
 			  <label>
 			    <input type="checkbox" <?php if ($postToEdit["available"] == 0) {echo " checked ";}?> name="available" value="set :D">

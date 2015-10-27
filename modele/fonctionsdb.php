@@ -53,20 +53,21 @@ function PostComment($id, $author, $comment){
 											"commentaire"=>htmlspecialchars($comment)));
 }
 
-function PostBillet($title, $author, $content, $image, $available){
+function PostBillet($title, $author, $content, $image, $available, $tag){
 
 	//Accès à la BDD
 	global $base;
 
 	//Préparer insertion
-	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image, available) VALUES(:titre,:auteur,:contenu,NOW(),:image, :available)");
+	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image, available, categorie) VALUES(:titre ,:auteur ,:contenu ,NOW() ,:image, :available, :tag)");
 	
 	//Insertion
 	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
 									"auteur"=>htmlspecialchars($author),
 									"contenu"=>htmlspecialchars($content),
 									"image"=>htmlspecialchars($image),
-									"available"=>$available));
+									"available"=>$available,
+									"tag"=>$tag));
 }
 
 function EditBillet($title, $author, $content, $image, $id, $available){
@@ -431,4 +432,30 @@ function insertImg($finalName, $desc)
 	$insertfile = $base->prepare("INSERT INTO pics(name,description) VALUES (:name,:description)");
 	$insertfile->execute(array('name'=>htmlspecialchars($finalName),
 							   'description'=>htmlspecialchars($desc)));
+}
+
+function Categorie($post){
+
+	global $base;
+	$cat = $base->prepare("SELECT categories.nom AS cat FROM categories, billets WHERE categories.id = billets.categorie AND billets.id = :post");
+	$cat->execute(array("post"=>$post));
+
+	$sendcat = $cat->fetch();
+
+	return $sendcat["cat"];
+	
+}
+
+function AffichageNomsCat(){
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux commentaires selon billet
+	$askForCatNames = $base->query("SELECT id, nom FROM categories ORDER BY id");
+
+	//Fetch all
+	$returnedCatNames = $askForCatNames->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedCatNames;
 }
