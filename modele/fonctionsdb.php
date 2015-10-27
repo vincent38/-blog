@@ -7,13 +7,20 @@
 	Inclus dans : TOUT
 */
 
-function AffichageIndex(){
+function AffichageIndex($premier, $dernier){
 
 	//Accès à la BDD
 	global $base;
 
 	//Requête d'accès aux 10 derniers billets
-	$askForPosts = $base->query("SELECT titre, auteur, contenu, id, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 ORDER BY id DESC LIMIT 0,10");
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 ORDER BY id DESC LIMIT :premierPost,:dernierPost");
+
+	//bind
+	$askForPosts->bindParam(':premierPost', $premier, PDO::PARAM_INT);
+	$askForPosts->bindParam(':dernierPost', $dernier, PDO::PARAM_INT);
+
+	//execute
+	$askForPosts->execute();
 
 	//Fetch all
 	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);

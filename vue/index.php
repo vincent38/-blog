@@ -46,5 +46,13 @@
 								<?php
 							}
 						}
+						?>
+							<nav>
+								<ul class="pager">
+									<li class="previous <?php if ($precedent == false) {echo "disabled";} ?>"><a href="<?php if ($precedent == true) {echo "index.php?page=".$pagePrecedent;} ?>"><span aria-hidden="true">&larr;</span> Plus récent</a></li>
+									<li class="next <?php if ($suivant == false) {echo "disabled";} ?>"><a href="<?php if ($suivant == true) {echo "index.php?page=".$pageSuivant;} ?>">Plus vieux <span aria-hidden="true">&rarr;</span></a></li>
+								</ul>
+							</nav>
+						<?php
 				include_once("includes/footer.php");
 				?>

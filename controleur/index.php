@@ -19,15 +19,83 @@ include_once("modele/connexionsql.php");
 //Inclusion fonctions SQL
 include_once("modele/fonctionsdb.php");
 
+if (isset($_GET["page"]))
+{
+	$page = (int) $_GET["page"];
+	$dernier = 10;
+	$premier = ($page * 10) - 10;
+	if ($_GET["page"] == 1)
+	{
+		$dernier = 10;
+		$premier = 0;
+	}
+}
+else
+{
+	$dernier = 10;
+	$premier = 0;
+}
+
 //GESTION DES BILLETS
 
-$billets = AffichageIndex();
+$billets = AffichageIndex($premier,$dernier);
+
+if (empty($billets))
+{
+	header("Location: index.php");
+}
 
 foreach ($billets as $cle => $billet)
 {
 	$billets["cle"]["titre"] = htmlspecialchars($billet["titre"]);
 	$billets["cle"]["auteur"] = htmlspecialchars($billet["auteur"]);
 	$billets["cle"]["contenu"] = nl2br(htmlspecialchars($billet["contenu"]));
+}
+
+//Test si page suivante/précédente possible
+
+//Page précédente
+if ($premier == 0)
+{
+	$precedent = false;
+}
+else
+{
+	$precedent = true;
+	if (isset($_GET["page"]))
+	{
+		$pagePrecedent = (int) $_GET["page"];
+		$pagePrecedent = $pagePrecedent - 1;
+	}
+	else
+	{
+		$pagePrecedent = 0;
+	}
+
+}
+
+//Page suivante
+
+if (isset($_GET["page"]))
+{
+	$page = (int) $_GET["page"];
+}
+else
+{
+	$page = 1;
+}
+
+$controlDernier = (($page + 1) * 10) - 1;
+$controlPremier = $controlDernier - 10;
+$next = AffichageIndex($controlPremier,$controlDernier);
+if (empty($next))
+{
+	$suivant = false;
+}
+else
+{
+	$suivant = true;
+	$pageSuivant = $page + 1;
 }
 
 //Connexion/déconnexion
