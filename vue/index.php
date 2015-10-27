@@ -23,9 +23,9 @@
 						}
 					</style>
 					<div id="carousel">
-						<img src="images_static/1.jpg" alt="Image 1" />
-						<img src="images_static/2.jpg" alt="Image 2" />
-						<img src="images_static/3.jpg" alt="Image 3" />
+						<a href="commentaires.php?id=1"><img src="images_static/1.jpg" alt="Image 1" /></a>
+						<a href="commentaires.php?id=4"><img src="images_static/2.jpg" alt="Image 2" /></a>
+						<a href="commentaires.php?id=8"><img src="images_static/3.jpg" alt="Image 3" /></a>
 					</div>
 					<!--End of waterwheel carousel-->
 					<?php
@@ -68,23 +68,11 @@
 									<script type="text/javascript">
 									  $(document).ready(function() {
 									    $("#carousel").waterwheelCarousel({
-											flankingItems: 1,
-											autoPlay : 10000,
 											speed : 1000,
 											forcedImageWidth : 400,
-											forcedImageHeight : 280,
-											movingToCenter: function ($item) {
-												$('#callback-output').prepend('movingToCenter: ' + $item.attr('id') + '<br/>');
-											},
-											movedToCenter: function ($item) {
-												$('#callback-output').prepend('movedToCenter: ' + $item.attr('id') + '<br/>');
-											},
-											movingFromCenter: function ($item) {
-												$('#callback-output').prepend('movingFromCenter: ' + $item.attr('id') + '<br/>');
-											},
-											movedFromCenter: function ($item) {
-												$('#callback-output').prepend('movedFromCenter: ' + $item.attr('id') + '<br/>');
-											}   
+											forcedImageHeight : 280,  
+											separation: 400,
+											autoPlay: 10000
 									    });
 									  });
 									</script>
