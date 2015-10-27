@@ -50,7 +50,7 @@ Pour installer la plateforme, il vous faudra approximativement 10 minutes.
 
 5- Ouvrez analytics.php.old et collez votre code analytics, puis supprimez .old
 
-6- Ouvrez apivariables.php.old, et collez votre clé reCaptcha et votre nom d'utilisateur twitter (pour un partage de liens avec mention de votre compte), puis supprimez.old
+6- Ouvrez apivariables.php.old, et collez votre clé reCaptcha, un salt robuste pour le cryptage des mots de passe et votre nom d'utilisateur twitter (pour un partage de liens avec mention de votre compte), puis supprimez.old
 
 7- Ouvrez adsense.php et collez votre code adsense, puis supprimez .old
 

@@ -44,6 +44,8 @@ if (isset($_GET["id"]))
 			if (!empty($postToEdit))
 			{
 				$alarmNoPostDetected = false;
+				$postToEdit["titre"] = preg_replace("#(\\\')#i","'", $postToEdit["titre"]); //'
+				$postToEdit["titre"] = preg_replace('#(\\\")#i','"', $postToEdit["titre"]); //'
 				$title = "Edition en cours de : ".$postToEdit["titre"];
 			}
 			else

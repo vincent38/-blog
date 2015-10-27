@@ -29,7 +29,7 @@ if (isset($_POST["pseudo"]) AND isset($_POST["pass1"]) AND isset($_POST["pass2"]
 			if ($_POST["pass1"] == $_POST["pass2"])
 			{
 				//Les deux MdP sont identiques, cryptage
-				$cryptedPasswd = sha1("y01op4s5wd".$_POST["pass1"]);
+				$cryptedPasswd = sha1($password_salt.$_POST["pass1"]);
 				if ($_POST["g-recaptcha-response"] == true)
 				{
 					//On inscrit le tout dans la DB

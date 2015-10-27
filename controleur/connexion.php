@@ -6,6 +6,8 @@ include_once("modele/connexionsql.php");
 //Inclusion des fonctions relatives aux membres
 include_once("modele/fonctionsdb.php");
 
+include_once("apivariables.php");
+
 if (isset($_SESSION["pseudo"]))
 {
 	header("Location: index.php");
@@ -41,7 +43,7 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 	{
 		//Variables définies, on cherche à savoir si le pseudo et le mot de passe existent et si ils sont bien reliés
 		$pass = $_POST["pass"];
-		$cryptedPass = sha1("y01op4s5wd".$pass);
+		$cryptedPass = sha1($password_salt.$pass);
 		$reponse = connexionMembre($_POST["pseudo"], $cryptedPass);
 
 		//Si true, alors définir variables de session, et éventuellement les cookies

@@ -30,7 +30,7 @@ else
 	$menu = false;
 }
 
-$title = "FDéconnexion ...";
+$title = "Déconnexion ...";
 
 include_once("vue/deconnexion.php")
 ?>

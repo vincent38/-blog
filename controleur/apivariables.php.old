@@ -11,3 +11,5 @@
 $recaptcha_key = "votre code reCaptcha";
 
 $twitter_account = "Votre twitter";
+
+$password_salt = "un salt robuste";
