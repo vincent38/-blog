@@ -48,6 +48,7 @@
 							<div class="Collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
 									<li><a href="index.php"><i class="fa fa-home"></i> Index</a></li>
+									<li><a href="search.php"><i class="fa fa-search"></i> Recherche par tags</a></li>
 									<?php
 									if (!empty($_SESSION))
 									{

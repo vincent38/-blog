@@ -29,6 +29,24 @@ function AffichageIndex($premier, $dernier){
 	return $returnedData;
 }
 
+function AffichageSearch($cat){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux 10 derniers billets
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 AND categorie = :cat ORDER BY id DESC");
+
+	//execute
+	$askForPosts->execute(array("cat"=>$cat));
+
+	//Fetch all
+	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedData;
+}
+
 function AffichageCommentaires($id){
 
 	//Accès à la BDD
@@ -446,6 +464,18 @@ function Categorie($post){
 	global $base;
 	$cat = $base->prepare("SELECT categories.nom AS cat FROM categories, billets WHERE categories.id = billets.categorie AND billets.id = :post");
 	$cat->execute(array("post"=>$post));
+
+	$sendcat = $cat->fetch();
+
+	return $sendcat["cat"];
+	
+}
+
+function CategorieGetter($id){
+
+	global $base;
+	$cat = $base->prepare("SELECT categories.nom AS cat FROM categories WHERE categories.id = :id");
+	$cat->execute(array("id"=>$id));
 
 	$sendcat = $cat->fetch();
 
