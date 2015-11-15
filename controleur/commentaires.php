@@ -17,7 +17,7 @@ include_once("modele/connexionsql.php");
 //Inclusion fonctions SQL
 include_once("modele/fonctionsdb.php");
 
-//Inclusion fonctions SQL
+//Inclusion api
 include_once("apivariables.php");
 
 //Ajouter un commentaire

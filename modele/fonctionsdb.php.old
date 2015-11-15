@@ -39,6 +39,24 @@ function AffichageCommentaires($id){
 	return $returnedComments;
 }
 
+function AffichageSearch($cat){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux 10 derniers billets
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 AND categorie = :cat ORDER BY id DESC");
+
+	//execute
+	$askForPosts->execute(array("cat"=>$cat));
+
+	//Fetch all
+	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedData;
+}
+
 function PostComment($id, $author, $comment){
 
 	//Accès à la BDD
@@ -431,4 +449,42 @@ function insertImg($finalName, $desc)
 	$insertfile = $base->prepare("INSERT INTO pics(name,description) VALUES (:name,:description)");
 	$insertfile->execute(array('name'=>htmlspecialchars($finalName),
 							   'description'=>htmlspecialchars($desc)));
+}
+
+function Categorie($post){
+
+	global $base;
+	$cat = $base->prepare("SELECT categories.nom AS cat FROM categories, billets WHERE categories.id = billets.categorie AND billets.id = :post");
+	$cat->execute(array("post"=>$post));
+
+	$sendcat = $cat->fetch();
+
+	return $sendcat["cat"];
+	
+}
+
+function CategorieGetter($id){
+
+	global $base;
+	$cat = $base->prepare("SELECT categories.nom AS cat FROM categories WHERE categories.id = :id");
+	$cat->execute(array("id"=>$id));
+
+	$sendcat = $cat->fetch();
+
+	return $sendcat["cat"];
+	
+}
+
+function AffichageNomsCat(){
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux commentaires selon billet
+	$askForCatNames = $base->query("SELECT id, nom FROM categories ORDER BY id");
+
+	//Fetch all
+	$returnedCatNames = $askForCatNames->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedCatNames;
 }
