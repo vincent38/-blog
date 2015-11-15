@@ -37,11 +37,19 @@ foreach ($listepics as $cle => $pic)
 	$listepics["cle"]["name"] = htmlspecialchars($pic["name"]);
 }
 
+$listeCats = AffichageNomsCat();
+
+foreach ($listeCats as $cle => $cat)
+{
+	$listeCats["cle"]["id"] = $cat["id"];
+	$listeCats["cle"]["nom"] = htmlspecialchars($cat["nom"]);
+}
+
 //Variables de base
 $post = false;
 
 //Détection si billet présent sur POST -> Envoi du billet
-if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu"]) AND isset($_POST["pic"]) AND !empty($_POST["titre"]) AND !empty($_POST["auteur"]) AND !empty($_POST["contenu"]))
+if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu"]) AND isset($_POST["pic"]) AND isset($_POST["cat"]) AND !empty($_POST["titre"]) AND !empty($_POST["auteur"]) AND !empty($_POST["contenu"]))
 		{
 			if (!isset($_POST["available"]))
 			{
@@ -54,12 +62,12 @@ if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu
 
 			if (isset($_POST["pic"]))
 			{
-				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], $_POST["pic"], $available);
+				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], $_POST["pic"], $available, $_POST["cat"]);
 				$post = true;
 			}
 			else
 			{
-				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], "", $available);
+				PostBillet($_POST["titre"], $_POST["auteur"], $_POST["contenu"], "", $available, $_POST["cat"]);
 				$post = true;
 			}
 			

@@ -9,7 +9,26 @@
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");
-					
+					?>
+					<!-- http://www.bkosborne.com/jquery-waterwheel-carousel -->
+					<style type="text/css">
+						#carousel {
+						  width:auto;
+						  height: 300px;
+						  display: relative;
+						}
+						#carousel img {
+						  display: hidden; /* hide images until carousel prepares them */
+						  cursor: pointer; /* not needed if you wrap carousel items in links */
+						}
+					</style>
+					<div id="carousel">
+						<a href="commentaires.php?id=1"><img src="images_static/1.jpg" alt="Image 1" /></a>
+						<a href="commentaires.php?id=4"><img src="images_static/2.jpg" alt="Image 2" /></a>
+						<a href="commentaires.php?id=8"><img src="images_static/3.jpg" alt="Image 3" /></a>
+					</div>
+					<!--End of waterwheel carousel-->
+					<?php
 						//Affichage des 10 derniers billets
 						foreach ($billets as $billet)
 						{
@@ -43,6 +62,21 @@
 											<a href="commentaires.php?id=<?php echo $billet['id']; ?>">Voir les commentaires --></a>
 										</div>
 									</div>
+									<!-- http://www.bkosborne.com/jquery-waterwheel-carousel -->
+									<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+									<script type="text/javascript" src="vue/js/jquery.waterwheelCarousel.min.js"></script>
+									<script type="text/javascript">
+									  $(document).ready(function() {
+									    $("#carousel").waterwheelCarousel({
+											speed : 1000,
+											forcedImageWidth : 400,
+											forcedImageHeight : 280,  
+											separation: 400,
+											autoPlay: 10000
+									    });
+									  });
+									</script>
+									<!--End of waterwheel carousel-->
 								<?php
 							}
 						}

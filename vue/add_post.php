@@ -24,7 +24,7 @@
 							[alert=(success|info|warning|danger)][/alert] -> Alertes visuelles<br />
 						</p>
 						<div class="form-group">
-							<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur" readonly value="<?php echo $author;?>">
+							<label for="auteur">Auteur : </label><input class="form-control" type="text" name="auteur" id="auteur" readonly='readonly' value="<?php echo $author;?>">
 						</div>
 						<div class="form-group">
 							<label for="titre">Titre de la news : </label><input type="text" class="form-control" name="titre" id="titre"><br />
@@ -44,6 +44,22 @@
 									{
 										echo "<option value='".$pic["name"]."'>".$pic["name"]."</option>";
 										$latest = $pic["name"];
+									}
+								}
+								?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="cat">Tag </label>
+							<select class="form-control" name="cat" id="cat">
+								<?php
+								$latest = "set";
+								foreach ($listeCats as $cat)
+								{
+									if ($latest != $cat["nom"])
+									{
+										echo "<option value='".$cat["id"]."'>".$cat["nom"]."</option>";
+										$latest = $cat["nom"];
 									}
 								}
 								?>

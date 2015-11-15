@@ -65,7 +65,7 @@ if (isset($_GET["id"]))
 $post = false;
 
 //Détection si billet présent sur POST -> Modification du billet
-if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu"]) AND isset($_POST["pic"]) AND !empty($_POST["titre"]) AND !empty($_POST["auteur"]) AND !empty($_POST["contenu"]))
+if (isset($_POST["auteur"]) AND isset($_POST["titre"]) AND isset($_POST["contenu"]) AND !empty($_POST["titre"]) AND !empty($_POST["auteur"]) AND !empty($_POST["contenu"]))
 		{
 			if (!isset($_POST["available"]))
 			{
