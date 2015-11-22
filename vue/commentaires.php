@@ -100,6 +100,7 @@
 							echo $error;
 						}
 						?>
+						<!--Récupération du contenu le plus récent-->
 						<script>
 						function getPost(){
 							var xhr = new XMLHttpRequest();

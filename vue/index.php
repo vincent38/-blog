@@ -9,26 +9,28 @@
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");
-					?>
-					<!-- http://www.bkosborne.com/jquery-waterwheel-carousel -->
-					<style type="text/css">
-						#carousel {
-						  width:auto;
-						  height: 300px;
-						  display: relative;
-						}
-						#carousel img {
-						  display: hidden; /* hide images until carousel prepares them */
-						  cursor: pointer; /* not needed if you wrap carousel items in links */
-						}
-					</style>
-					<div id="carousel">
-						<a href="commentaires.php?id=1"><img src="images_static/1.jpg" alt="Image 1" /></a>
-						<a href="commentaires.php?id=4"><img src="images_static/2.jpg" alt="Image 2" /></a>
-						<a href="commentaires.php?id=8"><img src="images_static/3.jpg" alt="Image 3" /></a>
-					</div>
-					<!--End of waterwheel carousel-->
-					<?php
+					if ($carrouselShow == "true") {
+						?>
+						<!-- http://www.bkosborne.com/jquery-waterwheel-carousel -->
+						<style type="text/css">
+							#carousel {
+							  width:auto;
+							  height: 300px;
+							  display: relative;
+							}
+							#carousel img {
+							  display: hidden; /* hide images until carousel prepares them */
+							  cursor: pointer; /* not needed if you wrap carousel items in links */
+							}
+						</style>
+						<div id="carousel">
+							<a href="commentaires.php?id=<?php echo $link1; ?>"><img src="images_static/<?php echo $img1; ?>" alt="Image 1 - carrousel" /></a>
+							<a href="commentaires.php?id=<?php echo $link2; ?>"><img src="images_static/<?php echo $img2; ?>" alt="Image 2 - carrousel" /></a>
+							<a href="commentaires.php?id=<?php echo $link3; ?>"><img src="images_static/<?php echo $img3; ?>" alt="Image 3 - carrousel" /></a>
+						</div>
+						<!--End of waterwheel carousel-->
+						<?php
+					}
 						//Affichage des 10 derniers billets
 						foreach ($billets as $billet)
 						{
@@ -42,7 +44,7 @@
 												$ShowImg = AffichageImage($billet["image"]);
 												echo $ShowImg;
 											}
-											//BBCODE-like
+											//BBCODE-like + fix
 											$billet["contenu"] = preg_replace("#\[alert=(success|info|warning|danger)\](.+)\[/alert\]#isU","<div class=\"alert alert-$1\" role=\"alert\">$2</div>",$billet["contenu"]); //alert boxes
 											$billet["contenu"] = preg_replace("#\[b\](.+)\[/b\]#isU","<strong>$1</strong>",$billet["contenu"]); //bold
 											$billet["contenu"] = preg_replace("#\[i\](.+)\[/i\]#isU","<em>$1</em>",$billet["contenu"]); //italic
@@ -53,7 +55,7 @@
 											$billet["contenu"] = preg_replace('#(\\\")#i','"', $billet["contenu"]); //'
 											$billet["titre"] = preg_replace("#(\\\')#i","'", $billet["titre"]); //'
 											$billet["titre"] = preg_replace('#(\\\")#i','"', $billet["titre"]); //'
-											//Fin du BBCODE-like
+											//Fin du BBCODE-like + fix
 										?>
 										<div class="caption">
 											<h2><?php echo $billet["titre"]; ?></h2>

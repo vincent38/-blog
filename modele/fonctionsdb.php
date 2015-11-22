@@ -496,3 +496,26 @@ function AffichageNomsCat(){
 	//return
 	return $returnedCatNames;
 }
+
+//GET and SET the parameters
+
+function returnValueFromParam($name){
+	global $base;
+
+	$askForParam = $base->prepare("SELECT value FROM parameters WHERE name = :name");
+
+	$askForParam->execute(array("name"=>$name));
+
+	$returnedValue = $askForParam->fetch();
+
+	return $returnedValue["value"];
+}
+
+function setParam($name, $value){
+	global $base;
+
+	$updateParam = $base->prepare("UPDATE parameters SET value = :value WHERE name = :name");
+
+	$updateParam->execute(array("name"=>$name,
+								"value"=>$value));
+}

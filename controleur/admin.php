@@ -37,5 +37,30 @@ foreach ($users as $cle => $user)
 
 $title = "MiaouNET - Administration";
 
+//Carrousel POST
+if (isset($_POST["img1"]) AND isset($_POST["img2"]) AND isset($_POST["img3"]) AND isset($_POST["link1"]) AND isset($_POST["link2"]) AND isset($_POST["link3"])){
+	setParam("img1", $_POST["img1"]);
+	setParam("img2", $_POST["img2"]);
+	setParam("img3", $_POST["img3"]);
+	setParam("link1", $_POST["link1"]);
+	setParam("link2", $_POST["link2"]);
+	setParam("link3", $_POST["link3"]);
+	if (isset($_POST["carrousel"])){
+		setParam("carrousel", "true");
+	} else {
+		setParam("carrousel", "false");
+	}
+	$outputCarrousel = "Les paramètres du carrousel ont été définis dans la BDD.";
+}
+
+//Gestion carrousel
+$carrouselShow = returnValueFromParam("carrousel");
+$img1 = returnValueFromParam("img1");
+$img2 = returnValueFromParam("img2");
+$img3 = returnValueFromParam("img3");
+$link1 = returnValueFromParam("link1");
+$link2 = returnValueFromParam("link2");
+$link3 = returnValueFromParam("link3");
+
 include_once("vue/admin.php");
 ?>

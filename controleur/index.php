@@ -124,6 +124,16 @@ else
 
 $title = "Bienvenue chez vincent !";
 
+//Gestion carrousel
+$carrouselShow = returnValueFromParam("carrousel");
+$img1 = returnValueFromParam("img1");
+$img2 = returnValueFromParam("img2");
+$img3 = returnValueFromParam("img3");
+$link1 = returnValueFromParam("link1");
+$link2 = returnValueFromParam("link2");
+$link3 = returnValueFromParam("link3");
+
+
 //Inclusion vue index
 include_once("vue/index.php");
 ?>
