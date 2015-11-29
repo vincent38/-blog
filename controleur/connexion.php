@@ -62,15 +62,42 @@ else //Aucun cookie défini ou utilisateur non connecté, donc on affiche le for
 			}
 			else
 			{
-				$status .= "<i class=\"fa fa-check\"></i> Connecté !<br />";
-				$box = "alert alert-success";
-				$form = false;
-				if (isset($_POST["autoco"]))
-				{
-					setcookie("username",$_POST["pseudo"],time()+365*24*3600,null,null,false,true);
-					setcookie("passwd",$cryptedPass,time()+365*24*3600,null,null,false,true);
-					$status .= "Connexion automatique installée pour 1 an !";
+				//Test si maintenance
+				if(returnValueFromParam("maintenanceMode") == "true"){
+					if ($_SESSION["rank"] < 5){
+						// Non admin
+						$status .= "<i class=\"fa fa-times\"></i> Mode maintenance activé, seul un administrateur peut accéder au service :/<br />";
+						$box = "alert alert-danger";
+						$form = true;
+						$_SESSION = array();
+						session_destroy();
+						setcookie("username","",time()-3600,null,null,false,true);
+						setcookie("passwd","",time()-3600,null,null,false,true);
+					} else {
+						// Admin
+						$status .= "<i class=\"fa fa-check\"></i> Connecté !<br />";
+						$box = "alert alert-success";
+						$form = false;
+						if (isset($_POST["autoco"]))
+						{
+							setcookie("username",$_POST["pseudo"],time()+365*24*3600,null,null,false,true);
+							setcookie("passwd",$cryptedPass,time()+365*24*3600,null,null,false,true);
+						}
+						header("Location: admin.php");
+					}
+				} else {
+					//Non maintenance
+					$status .= "<i class=\"fa fa-check\"></i> Connecté !<br />";
+					$box = "alert alert-success";
+					$form = false;
+					if (isset($_POST["autoco"]))
+					{
+						setcookie("username",$_POST["pseudo"],time()+365*24*3600,null,null,false,true);
+						setcookie("passwd",$cryptedPass,time()+365*24*3600,null,null,false,true);
+						$status .= "Connexion automatique installée pour 1 an !";
+					}
 				}
+				
 			}
 		}
 		else

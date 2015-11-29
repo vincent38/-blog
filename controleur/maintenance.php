@@ -1,11 +1,7 @@
 <?php
 /*
-	controleur/index.php par Vincent AUBRIOT
+	controleur/maintenance.php par Vincent AUBRIOT
 	Availible @ https://github.com/vincent38/-blog/
-	Contient : Gestion de la récupération des billets et de la pagination,
-	gestion des membres connectés/non connectés.
-
-	Inclus dans : ../index.php
 */
 
 session_start();
@@ -19,39 +15,13 @@ include_once("modele/connexionsql.php");
 //Inclusion fonctions SQL
 include_once("modele/fonctionsdb.php");
 
-//Test si maintenance
-if(returnValueFromParam("maintenanceMode") == "true"){
-	header("Location: maintenance.php");
+//Test si non maintenance
+if(returnValueFromParam("maintenanceMode") == "false"){
+	header("Location: index.php");
 }
 
-$listeCats = AffichageNomsCat();
-
-foreach ($listeCats as $cle => $cat)
-{
-	$listeCats["cle"]["id"] = $cat["id"];
-	$listeCats["cle"]["nom"] = htmlspecialchars($cat["nom"]);
-}
-
-
-//GESTION DES BILLETS
-
-if (isset($_GET["cat"]) AND !empty($_GET["cat"]))
-{
-	$catName = CategorieGetter($_GET["cat"]);
-	$billets = AffichageSearch($_GET["cat"]);
-}
-
-if (empty($billets))
-{
-	header("Location: search.php?cat=1");
-}
-
-foreach ($billets as $cle => $billet)
-{
-	$billets["cle"]["titre"] = htmlspecialchars($billet["titre"]);
-	$billets["cle"]["auteur"] = htmlspecialchars($billet["auteur"]);
-	$billets["cle"]["contenu"] = nl2br(htmlspecialchars($billet["contenu"]));
-}
+//Get maintenance message
+$status = returnValueFromParam("maintenanceMessage");
 
 //Connexion/déconnexion
 if (isset($_SESSION["pseudo"]))
@@ -77,10 +47,10 @@ else
 	$menu = false;
 }
 
-$title = "Tous les billets : ".$catName;
+$title = "Maintenance en cours !";
 
 //Inclusion vue index
-include_once("vue/search.php");
+include_once("vue/maintenance.php");
 ?>
 <!--
 	//BBCODE-like

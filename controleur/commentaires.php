@@ -20,6 +20,11 @@ include_once("modele/fonctionsdb.php");
 //Inclusion api
 include_once("apivariables.php");
 
+//Test si maintenance
+if(returnValueFromParam("maintenanceMode") == "true"){
+	header("Location: maintenance.php");
+}
+
 //Ajouter un commentaire
 if (isset($_SESSION["pseudo"]) AND isset($_POST["id_billet"]) AND isset($_POST["commentaire"]))
 {

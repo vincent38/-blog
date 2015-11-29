@@ -6,6 +6,11 @@ include_once("modele/fonctionsdb.php");
 
 include_once("apivariables.php");
 
+//Test si maintenance
+if(returnValueFromParam("maintenanceMode") == "true"){
+	header("Location: maintenance.php");
+}
+
 $box = "";
 $status = "";
 

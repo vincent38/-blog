@@ -35,6 +35,7 @@
 						</table>
 					<br />
 					<h3 style="text-align: center">Gestion du carrousel</h3>
+					<p style="text-align: center" class="help-block">ATTENTION : cette option peut dégrader l'expérience de navigation sur certains périphériques.<br />A utiliser uniquement si elle s'avère utile.</p>
 					<?php if (isset($outputCarrousel))
 					{
 						echo "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> ".$outputCarrousel."</div>";
@@ -73,6 +74,50 @@
 						</div>
 						<input type="submit" class="btn btn-default"/>
 					</form>
+					<h3 style="text-align: center">Gestion du nuage de mots</h3>
+					<p style="text-align: center" class="help-block">ATTENTION : cette option peut dégrader l'expérience de navigation sur certains périphériques.<br />A utiliser uniquement si elle s'avère utile.</p>
+					<?php if (isset($outputTagCloud))
+					{
+						echo "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> ".$outputTagCloud."</div>";
+					} ?>
+					<form id="tagcloud" method="post" action="admin.php">
+						<div class="checkbox">
+						    <label>
+						    	<input id="tagcloud" name="tagcloud" type="checkbox" <?php if ($tagShow == "true") {echo "checked";} ?>> Activer le nuage de mots </input>
+						    </label>
+						 </div>
+						 <div class="checkbox">
+							<label>
+							    <input id="confirmtag" name="confirmtag" type="checkbox"> Confirmer le choix (cocher pour enregistrer les options dans la BDD)</input>
+							</label>
+						</div>
+						<p>Liste de liens utilisée : tags</p>
+						 <input type="submit" class="btn btn-default"/>
+					</form>
+					<h3 style="text-align: center">Mode maintenance</h3>
+					<p style="text-align: center" class="help-block">En mode maintenance, seul le menu d'administration reste accessible.<br /> Ne peuvent se connecter que les administrateurs et super-administrateurs afin de désactiver ce mode.</p>
+					<?php if (isset($outputMaintenance))
+					{
+						echo "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> ".$outputMaintenance."</div>";
+					} ?>
+					<form method="post" action="admin.php">
+						<div class="checkbox">
+						    <label>
+						    	<input id="mtceShow" name="mtceShow" type="checkbox" <?php if ($mtceShow == "true") {echo "checked";} ?>> Mode maintenance </input>
+						    </label>
+						 </div>
+						 <div class="form-group">
+							<label for="link3">Texte de maintenance :</label>
+						    <input type="text" class="form-control" id="mtceTxt" name="mtceTxt" value="<?php echo $mtceTxt; ?>">
+						</div>
+						 <div class="checkbox">
+							<label>
+							    <input id="confirmmtce" name="confirmmtce" type="checkbox"> Cochez cette case pour confirmer l'activation/désactivation du mode et/ou la modification du message</input>
+							</label>
+						</div>
+						 <input type="submit" class="btn btn-default"/>
+					</form>
+
 				<?php
 				include_once("includes/footer.php");
 				?>

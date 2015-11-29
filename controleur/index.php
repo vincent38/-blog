@@ -19,6 +19,11 @@ include_once("modele/connexionsql.php");
 //Inclusion fonctions SQL
 include_once("modele/fonctionsdb.php");
 
+//Test si maintenance
+if(returnValueFromParam("maintenanceMode") == "true"){
+	header("Location: maintenance.php");
+}
+
 if (isset($_GET["page"]))
 {
 	$page = (int) $_GET["page"];
@@ -126,6 +131,7 @@ $title = "Bienvenue chez vincent !";
 
 //Gestion carrousel
 $carrouselShow = returnValueFromParam("carrousel");
+$tagShow = returnValueFromParam("tagcloud");
 $img1 = returnValueFromParam("img1");
 $img2 = returnValueFromParam("img2");
 $img3 = returnValueFromParam("img3");
@@ -133,6 +139,14 @@ $link1 = returnValueFromParam("link1");
 $link2 = returnValueFromParam("link2");
 $link3 = returnValueFromParam("link3");
 
+//Get categories + listing tag cloud
+$cats = AffichageNomsCat();
+
+foreach ($cats as $cle => $cat)
+{
+	$cats["cle"]["id"] = $cat["id"];
+	$cats["cle"]["nom"] = htmlspecialchars($cat["nom"]);
+}
 
 //Inclusion vue index
 include_once("vue/index.php");

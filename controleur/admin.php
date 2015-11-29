@@ -53,14 +53,40 @@ if (isset($_POST["img1"]) AND isset($_POST["img2"]) AND isset($_POST["img3"]) AN
 	$outputCarrousel = "Les paramètres du carrousel ont été définis dans la BDD.";
 }
 
-//Gestion carrousel
+//Tag cloud POST
+if (isset($_POST["confirmtag"])){
+	if (isset($_POST["tagcloud"])){
+		setParam("tagcloud", "true");
+	} else {
+		setParam("tagcloud", "false");
+	}
+	$outputTagCloud = "Les paramètres du nuage de mots ont été définis dans la BDD.";
+}
+
+//Maintenance POST
+if (isset($_POST["confirmmtce"])){
+	setParam("maintenanceMessage", $_POST["mtceTxt"]);
+	if (isset($_POST["mtceShow"])){
+		setParam("maintenanceMode", "true");
+	} else {
+		setParam("maintenanceMode", "false");
+	}
+	$outputMaintenance = "Les paramètres de maintenance ont été définis dans la BDD.";
+}
+
+//Gestion carrousel + tag
 $carrouselShow = returnValueFromParam("carrousel");
+$tagShow = returnValueFromParam("tagcloud");
 $img1 = returnValueFromParam("img1");
 $img2 = returnValueFromParam("img2");
 $img3 = returnValueFromParam("img3");
 $link1 = returnValueFromParam("link1");
 $link2 = returnValueFromParam("link2");
 $link3 = returnValueFromParam("link3");
+
+//Gestion maintenance
+$mtceShow = returnValueFromParam("maintenanceMode");
+$mtceTxt = returnValueFromParam("maintenanceMessage");
 
 include_once("vue/admin.php");
 ?>

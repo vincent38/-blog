@@ -8,6 +8,11 @@ include_once("modele/connexionsql.php");
 //Inclusion fonctions SQL
 include_once("modele/fonctionsdb.php");
 
+//Test si maintenance
+if(returnValueFromParam("maintenanceMode") == "true"){
+	header("Location: maintenance.php");
+}
+
 //Session checker 3000
 if (empty($_SESSION))
 {
