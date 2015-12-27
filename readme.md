@@ -62,4 +62,6 @@ Pour installer la plateforme, il vous faudra approximativement 10 minutes.
 
 11- Modifiez le rank de votre compte du 3 au 5.
 
-12- Terminé ! Vous pouvez maintenent promouvoir des utilisateurs au rang de modérateur/rédacteur, et commencer à rédiger vos premiers billets ! (N'oubliez pas de supprimer createBDD.sql)
+12- Modifiez les titres des pages (via les variables $titre dans les contrôleurs), ainsi que le titre et le sous-titre de votre blog (dans la page /vue/includes/header.php)
+
+13- Terminé ! Vous pouvez maintenent promouvoir des utilisateurs au rang de modérateur/rédacteur, et commencer à rédiger vos premiers billets ! (N'oubliez pas de supprimer createBDD.sql)

@@ -10,6 +10,7 @@
 					include_once("includes/header.php");
 					?>
 					<h2 style="text-align: center">Espace d'administration</h2>
+					<p style="text-align: center" class="help-block">MàJ du 27/12/15 : Amélioration des menus, ajout de l'upload vers ImageShack, consultation des profils depuis les commentaires. Enjoy :3</p>
 					<h3 style="text-align: center">Liste des utilisateurs inscrits</h3>
 						<table class="table">
 							<thead>
@@ -113,6 +114,28 @@
 						 <div class="checkbox">
 							<label>
 							    <input id="confirmmtce" name="confirmmtce" type="checkbox"> Cochez cette case pour confirmer l'activation/désactivation du mode et/ou la modification du message</input>
+							</label>
+						</div>
+						 <input type="submit" class="btn btn-default"/>
+					</form>
+					<h3 style="text-align: center">Formulaire de contact</h3>
+					<?php if (isset($outputContact))
+					{
+						echo "<div class=\"alert alert-success\" role=\"alert\"><i class=\"fa fa-check\"></i> ".$outputContact."</div>";
+					} ?>
+					<form id="tagcloud" method="post" action="admin.php">
+						<div class="checkbox">
+						    <label>
+						    	<input id="contactForm" name="contactForm" type="checkbox" <?php if ($contactForm == "true") {echo "checked";} ?>> Activer le formulaire de contact </input>
+						    </label>
+						 </div>
+						 <div class="form-group">
+							<label for="link3">Email de réception des messages :</label>
+						    <input type="text" class="form-control" id="formEmail" name="formEmail" value="<?php echo $formEmail; ?>">
+						</div>
+						 <div class="checkbox">
+							<label>
+							    <input id="confirmcontact" name="confirmcontact" type="checkbox"> Confirmer le choix (cocher pour enregistrer les options dans la BDD)</input>
 							</label>
 						</div>
 						 <input type="submit" class="btn btn-default"/>

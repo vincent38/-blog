@@ -11,31 +11,7 @@
 					include_once("includes/header.php");
 						//Affichage des 10 derniers billets
 						?>
-						<h1 style="text-align: center">Recherche d'articles par tag</h1>
-						<form id="f1" method="get" action="search.php">
-							<div class="form-group">
-								<label for="cat">Tag </label>
-								<select onchange="document.forms['f1'].submit();" class="form-control" name="cat" id="cat">
-									<optgroup label="Sélectionné">
-										<option value="<?php echo $_GET["cat"]; ?>"><?php echo $catName; ?></option>
-									</optgroup>
-									<optgroup label="Tous les tags">
-										<?php
-										$latest = "set";
-										foreach ($listeCats as $cat)
-										{
-											if ($latest != $cat["nom"])
-											{
-												echo "<option value='".$cat["id"]."'>".$cat["nom"]."</option>";
-												$latest = $cat["nom"];
-											}
-										}
-										?>
-									</optgroup>
-								</select>
-							</div>
-						</form>
-						<h2 style="text-align: center">Résultats pour : <?php echo $catName; ?></h2>
+						<h1 style="text-align: center">Résultats pour : <?php echo $catName; ?></h1>
 						<?php
 						foreach ($billets as $billet)
 						{

@@ -7,13 +7,38 @@
 	Inclus dans : TOUT
 */
 
-function AffichageIndex(){
+function AffichageIndex($premier, $dernier){
 
 	//Accès à la BDD
 	global $base;
 
 	//Requête d'accès aux 10 derniers billets
-	$askForPosts = $base->query("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 ORDER BY id DESC LIMIT 0,10");
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(DATE_ADD(date_creation, INTERVAL 6 HOUR), 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 ORDER BY id DESC LIMIT :premierPost,:dernierPost");
+
+	//bind
+	$askForPosts->bindParam(':premierPost', $premier, PDO::PARAM_INT);
+	$askForPosts->bindParam(':dernierPost', $dernier, PDO::PARAM_INT);
+
+	//execute
+	$askForPosts->execute();
+
+	//Fetch all
+	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
+
+	//return
+	return $returnedData;
+}
+
+function AffichageSearch($cat){
+
+	//Accès à la BDD
+	global $base;
+
+	//Requête d'accès aux 10 derniers billets
+	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 AND categorie = :cat ORDER BY id DESC");
+
+	//execute
+	$askForPosts->execute(array("cat"=>$cat));
 
 	//Fetch all
 	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
@@ -39,24 +64,6 @@ function AffichageCommentaires($id){
 	return $returnedComments;
 }
 
-function AffichageSearch($cat){
-
-	//Accès à la BDD
-	global $base;
-
-	//Requête d'accès aux 10 derniers billets
-	$askForPosts = $base->prepare("SELECT titre, auteur, contenu, id, DATE_FORMAT(date_commentaire, 'le %d/%m/%Y à %H:%i') AS datewrote, image, available FROM billets WHERE available = 1 AND id >= 1 AND categorie = :cat ORDER BY id DESC");
-
-	//execute
-	$askForPosts->execute(array("cat"=>$cat));
-
-	//Fetch all
-	$returnedData = $askForPosts->fetchAll(PDO::FETCH_ASSOC);
-
-	//return
-	return $returnedData;
-}
-
 function PostComment($id, $author, $comment){
 
 	//Accès à la BDD
@@ -71,20 +78,21 @@ function PostComment($id, $author, $comment){
 											"commentaire"=>htmlspecialchars($comment)));
 }
 
-function PostBillet($title, $author, $content, $image, $available){
+function PostBillet($title, $author, $content, $image, $available, $tag){
 
 	//Accès à la BDD
 	global $base;
 
 	//Préparer insertion
-	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image, available) VALUES(:titre,:auteur,:contenu,NOW(),:image, :available)");
+	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image, available, categorie) VALUES(:titre ,:auteur ,:contenu ,NOW() ,:image, :available, :tag)");
 	
 	//Insertion
 	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
 									"auteur"=>htmlspecialchars($author),
 									"contenu"=>htmlspecialchars($content),
 									"image"=>htmlspecialchars($image),
-									"available"=>$available));
+									"available"=>$available,
+									"tag"=>$tag));
 }
 
 function EditBillet($title, $author, $content, $image, $id, $available){
@@ -510,4 +518,16 @@ function setParam($name, $value){
 
 	$updateParam->execute(array("name"=>$name,
 								"value"=>$value));
+}
+
+function getUserByPseudo($pseudo)
+{
+	//Définit les variables de session
+	global $base;
+	$userData = $base->prepare("SELECT pseudo, id, mail, pass, DATE_FORMAT(date_inscription, 'le %d/%m/%Y') AS date_i, rank FROM membres WHERE pseudo=:pseudo");
+	$userData->execute(array("pseudo"=>$pseudo));
+
+	$returnedData = $userData->fetch();
+
+	return $returnedData;
 }

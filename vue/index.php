@@ -96,7 +96,6 @@
 											</div>
 										</div>
 										<!-- http://www.bkosborne.com/jquery-waterwheel-carousel -->
-										<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 										<script type="text/javascript" src="vue/js/jquery.waterwheelCarousel.min.js"></script>
 										<script type="text/javascript">
 										  $(document).ready(function() {

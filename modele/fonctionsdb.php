@@ -519,3 +519,15 @@ function setParam($name, $value){
 	$updateParam->execute(array("name"=>$name,
 								"value"=>$value));
 }
+
+function getUserByPseudo($pseudo)
+{
+	//Définit les variables de session
+	global $base;
+	$userData = $base->prepare("SELECT pseudo, id, mail, pass, DATE_FORMAT(DATE_ADD(date_inscription, INTERVAL 6 HOUR), 'le %d/%m/%Y') AS date_i, rank FROM membres WHERE pseudo=:pseudo");
+	$userData->execute(array("pseudo"=>$pseudo));
+
+	$returnedData = $userData->fetch();
+
+	return $returnedData;
+}

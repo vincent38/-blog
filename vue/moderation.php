@@ -13,6 +13,7 @@
 						<div class="well">
 							<a class="btn btn-default" href="add_post.php" role="button"><i class="fa fa-plus"></i> Créer un nouvel article</a>
 							<a class="btn btn-default" href="upload.php" role="button"><i class="fa fa-cloud-upload"></i> Importer une nouvelle image</a>
+							<a class="btn btn-default" href="loginimgshack.php" role="button"><i class="fa fa-cloud-upload"></i> Importer une nouvelle image sur Imageshack</a>
 						</div>
 						<h2 style="text-align: center;">Liste des commentaires postés</h2>
 						<p style="text-align: center;">Cliquez sur un commentaire trop long pour l'afficher en entier</p>

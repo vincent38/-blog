@@ -24,15 +24,6 @@ if(returnValueFromParam("maintenanceMode") == "true"){
 	header("Location: maintenance.php");
 }
 
-$listeCats = AffichageNomsCat();
-
-foreach ($listeCats as $cle => $cat)
-{
-	$listeCats["cle"]["id"] = $cat["id"];
-	$listeCats["cle"]["nom"] = htmlspecialchars($cat["nom"]);
-}
-
-
 //GESTION DES BILLETS
 
 if (isset($_GET["cat"]) AND !empty($_GET["cat"]))

@@ -63,6 +63,17 @@ if (isset($_POST["confirmtag"])){
 	$outputTagCloud = "Les paramètres du nuage de mots ont été définis dans la BDD.";
 }
 
+//Contact POST
+if (isset($_POST["confirmcontact"])){
+	setParam("emailContact", $_POST["formEmail"]);
+	if (isset($_POST["contactForm"])){
+		setParam("contact", "true");
+	} else {
+		setParam("contact", "false");
+	}
+	$outputContact = "Les paramètres du formulaire de contact ont été définis dans la BDD.";
+}
+
 //Maintenance POST
 if (isset($_POST["confirmmtce"])){
 	setParam("maintenanceMessage", $_POST["mtceTxt"]);
@@ -74,9 +85,11 @@ if (isset($_POST["confirmmtce"])){
 	$outputMaintenance = "Les paramètres de maintenance ont été définis dans la BDD.";
 }
 
-//Gestion carrousel + tag
+//Gestion carrousel + tag + contact
 $carrouselShow = returnValueFromParam("carrousel");
 $tagShow = returnValueFromParam("tagcloud");
+$contactForm = returnValueFromParam("contact");
+$formEmail = returnValueFromParam("emailContact");
 $img1 = returnValueFromParam("img1");
 $img2 = returnValueFromParam("img2");
 $img3 = returnValueFromParam("img3");

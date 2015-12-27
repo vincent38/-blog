@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+//Inclusion des ID SQL
+include_once("modele/connexionsql.php");
+//Inclusion des fonctions relatives aux membres
+include_once("modele/fonctionsdb.php");
+
 if (isset($_SESSION["pseudo"]))
 {
 	//Destruction de la session + message OK
