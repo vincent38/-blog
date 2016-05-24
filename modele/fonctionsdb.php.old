@@ -71,7 +71,7 @@ function PostComment($id, $author, $comment){
 
 	//Préparer insertion
 	$writenewarticle = $base->prepare("INSERT INTO commentaires(id_billet, auteur, commentaire, date_commentaire) VALUES(:id_billet,:auteur,:commentaire,NOW())");
-	
+
 	//Insertion
 	$writenewarticle->execute(array("id_billet"=>htmlspecialchars($id),
 											"auteur"=>htmlspecialchars($author),
@@ -85,7 +85,7 @@ function PostBillet($title, $author, $content, $image, $available, $tag){
 
 	//Préparer insertion
 	$writenewarticle = $base->prepare("INSERT INTO billets(titre, auteur, contenu, date_creation, image, available, categorie) VALUES(:titre ,:auteur ,:contenu ,NOW() ,:image, :available, :tag)");
-	
+
 	//Insertion
 	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
 									"auteur"=>htmlspecialchars($author),
@@ -102,7 +102,7 @@ function EditBillet($title, $author, $content, $image, $id, $available){
 
 	//Préparer insertion
 	$writenewarticle = $base->prepare("UPDATE billets SET titre=:titre, auteur=:auteur, contenu=:contenu, image=:image, available=:available WHERE id=:id ");
-	
+
 	//Insertion
 	$writenewarticle->execute(array("titre"=>htmlspecialchars($title),
 									"auteur"=>htmlspecialchars($author),
@@ -285,7 +285,7 @@ function Ranking($pseudo){
 	$sendrank = $rank->fetch();
 
 	return $sendrank["perm"];
-	
+
 }
 
 function RankingComment($pseudo){
@@ -297,7 +297,7 @@ function RankingComment($pseudo){
 	$sendrank = $rank->fetch();
 
 	return $sendrank;
-	
+
 }
 
 function selectCommsGlobal(){
@@ -468,7 +468,7 @@ function Categorie($post){
 	$sendcat = $cat->fetch();
 
 	return $sendcat["cat"];
-	
+
 }
 
 function CategorieGetter($id){
@@ -480,7 +480,7 @@ function CategorieGetter($id){
 	$sendcat = $cat->fetch();
 
 	return $sendcat["cat"];
-	
+
 }
 
 function AffichageNomsCat(){
@@ -530,4 +530,31 @@ function getUserByPseudo($pseudo)
 	$returnedData = $userData->fetch();
 
 	return $returnedData;
+}
+
+function banUserFromChat($banchat)
+{
+	global $base;
+
+	$userToSet = $base->prepare("UPDATE membres SET banchat = :banchat WHERE id = :id");
+	$userToSet->execute(array("banchat"=>$banchat,
+							  "id"=>$id));
+}
+
+function postMessageOnChat($userId, $message)
+{
+	global $base;
+
+	$messageToSend = $base->prepare("INSERT INTO blogchat(user_id,date,message) VALUES (:userId,NOW(),:message)");
+	$messageToSend->execute(array("userId"=>$userId,
+								  "message"=>$message));
+}
+
+function getMessageOnChat()
+{
+	//Définit les variables de session
+	global $base;
+	$messages = $base->query("SELECT * FROM blogchat LIMIT 0,20");
+
+	return $messages;
 }

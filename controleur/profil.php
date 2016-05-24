@@ -19,6 +19,13 @@ if (isset($_GET["pseudo"]) AND !empty($_GET["pseudo"]))
 {
 	$user = getUserByPseudo($_GET["pseudo"]);
 
+	if (!empty($user))
+	{
+		$title = "Profil de ".$user["pseudo"];
+	} else {
+		$title = "Profil inexistant";
+	}
+
 	//Gravatar
 	$url = get_gravatar($user["mail"]);
 	
@@ -45,6 +52,8 @@ if (isset($_GET["pseudo"]) AND !empty($_GET["pseudo"]))
 	
 	//Date inscription
 	$date = $user["date_i"];
+} else {
+	$title = "Merci de renseigner un pseudo !";
 }
 
 //Connexion/déconnexion
@@ -58,8 +67,6 @@ else
 	//Affichage co
 	$menu = false;
 }
-
-$title = "Bienvenue, ".$_SESSION["pseudo"]." - voici votre profil.";
 
 include_once("vue/profil.php");
 ?>

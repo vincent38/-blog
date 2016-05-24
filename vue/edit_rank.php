@@ -16,6 +16,7 @@
 									<tr>
 										<th>Pseudonyme :</th>
 										<th>Rang :</th>
+										<!--<th>Ban chat :</th> INDEV - COMING SOON-->
 									</tr>
 								</thead>
 								<tbody>
@@ -31,6 +32,7 @@
 												<option value='5'>Administrateur</option>
 											</select>
 										</td>
+										<!--<td><input type="checkbox" name="banchat" id="banchat" <?php if ($user["banchat"] == "1") { echo "checked"; }?> /> <label for="banchat">Bannir du chat</label></td> INDEV - COMING SOON-->
 										<td><button type="submit">Valider</button></td>
 									</tr>
 								</tbody>

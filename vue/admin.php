@@ -10,7 +10,7 @@
 					include_once("includes/header.php");
 					?>
 					<h2 style="text-align: center">Espace d'administration</h2>
-					<p style="text-align: center" class="help-block">MàJ du 27/12/15 : Amélioration des menus, ajout de l'upload vers ImageShack, consultation des profils depuis les commentaires. Enjoy :3</p>
+					<p style="text-align: center" class="help-block">NOUVELLE MàJ du 30/12/15 : ajout de fonctionnalités importantes ! <a href="updatenotes.php">Lisez les notes !</a></p>
 					<h3 style="text-align: center">Liste des utilisateurs inscrits</h3>
 						<table class="table">
 							<thead>
@@ -27,7 +27,7 @@
 								{
 									if ($latest != $user["pseudo"])
 									{
-										echo "<tr><td>".$user["pseudo"]."</td><td>".$user["date_inscription"]."</td><td>Rang actuel : ".Ranking($user["pseudo"])." - <a href='edit_rank.php?id=".$user["id"]."'>Editer le rang</a></td></tr>";
+										echo "<tr><td><a href='profil.php?pseudo=".urlencode($user["pseudo"])."'>".$user["pseudo"]."</a></td><td>".$user["date_inscription"]."</td><td>Rang actuel : ".Ranking($user["pseudo"])." - <a href='edit_rank.php?id=".$user["id"]."'>Editer le rang</a></td></tr>";
 										$latest = $user["pseudo"];
 									}
 								}

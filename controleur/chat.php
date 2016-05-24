@@ -25,37 +25,14 @@ else
 
 //Test permissions
 $access = RankingComment($_SESSION["pseudo"]);
-if ($access["miaounet_admin"] == "0")
+if ($access["miaounet_mod"] == "0")
 {
 	header("Location: index.php");
 }
 
-if (!empty($_POST["rank"]) AND !empty($_POST["id"]))
-{
-	if (isset($_POST["banchat"]))
-	{
-		$banchat = 1;
-	} else {
-		$banchat = 0;
-	}
-	banUserFromChat($banchat);
-	setRank($_POST["id"], $_POST["rank"]);
-}
+$messages = getMessageOnChat();
 
-if (!isset($_GET["id"]))
-{
-	header("Location: index.php");
-}
-else
-{
-	$user = getUser($_GET["id"]);
-	if (empty($user["pseudo"]))
-	{
-		header("Location: index.php");
-	}
-}
+$title = "MiaouNET - Chat interne";
 
-$title = "Modification des permissions pour : ".$user["pseudo"];
-
-include_once("vue/edit_rank.php");
+include_once("vue/chat.php");
 ?>

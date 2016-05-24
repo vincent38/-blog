@@ -32,7 +32,7 @@
 		<!--Balise de titre-->
 		<title><?php echo $title; ?></title>
 	</head>
-	
+
 	<body>
 		<!-- Corps de la page -->
 		<!--Architecture bootstrap 3 -> 2cols 8cols 2cols -->
@@ -43,8 +43,8 @@
 				<div class="col-8">
 					<!--Header du site-->
 					<header class="page-header">
-						<h1 style="text-align: center;">Bienvenue chez vincent !</h1>
-						<p style="text-align: center;">Un blog sur mon travail, et bien plus.</p>
+						<h1 style="text-align: center;">Votre blog :)</h1>
+						<p style="text-align: center;">This is where the magic happens...</p>
 					</header>
 					<!--Menu-->
 					<nav class="navbar navbar-default">
@@ -103,7 +103,7 @@
 													<li><a href="inscription.php"><i class="fa fa-user-plus"></i> Inscription</a></li></li>
 													<?php
 												}
-												?>	  	
+												?>
 									    </ul>
 									</li>
 									<li><a href="contact.php"><i class="fa fa-envelope"></i> Nous contacter</a></li>

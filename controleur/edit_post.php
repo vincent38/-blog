@@ -35,6 +35,14 @@ if ($access["miaounet_mod"] == "0")
 //Get images
 $listepics = AffichageNomsImages();
 
+//Imageshack
+if (!empty($_SESSION["token"]))
+{
+	$imgshack = true;
+} else {
+	$imgshack = false;
+}
+
 //Tri images
 foreach ($listepics as $cle => $pic)
 {

@@ -8,8 +8,15 @@
 					<?php
 					//Ajout du header commun
 					include_once("includes/header.php");
-					if (!isset($outParsed)) {
+
+					//Test si curl présent
+					if (!extension_loaded('curl')) {
+    					echo "<div class=\"alert alert-danger\" role=\"alert\">[ERREUR] cURL n'est pas activé sur ce serveur. Vous ne pouvez donc pas bénéficier de cette fonctionnalité :/</div>";
+					}
+
+					if (!isset($imgshack)) {
 					?>
+						<div class="well">Bienvenue sur le client Imageshack du Stendhal Déchaîné.<br /> Vous pouvez l'utiliser pour importer vos images et obtenir des liens directs sans quitter le site.<br />Pour commencer, connectez-vous avec vos identifiants Imageshack.</div>
 						<h2 style="text-align: center;">Connexion à Imageshack :</h2>
 						<form method="post" action="loginimgshack.php">
 							<div class="form-group">
@@ -19,12 +26,18 @@
 								<label for="password">Mot de passe : </label><input class="form-control" type="password" name="password" id="password" />
 							</div>
 							<button type="submit" class="btn btn-default">
-					      	        <i class="fa fa-sign-in"></i> Connexion
+					      	        <i class="fa fa-sign-in"></i> Connexion via l'API
 					      	    </button>
 						</form>
 						<?php
 					} else {
-						if ($outParsed["success"] == 0) {
+						if (isset($imgshack)){
+							echo "<h2 style='text-align: center'>Bienvenue, ".$_SESSION["username_is"]." !</h2>";
+							echo "<p style='text-align: center'>Votre User ID : ".$_SESSION["userid_is"]."<br />
+							Statut du compte : ".$_SESSION["membership_is"]."<br />
+							Vous pouvez maintenant envoyer directement vos images depuis le système de création et de modification de billets.<br />
+							<a href=\"moderation.php\">Retourner au menu de modération</a></p>";
+						} else if ($outParsed["success"] == 0) {
 							echo "<div class=\"alert alert-danger\" role=\"alert\">[ERREUR] Imageshack a renvoyé une erreur.<br />
 							Code : ".$outParsed['error']['error_code']."<br />
 							Message : ".$outParsed['error']['error_message']."<br />
@@ -32,12 +45,7 @@
 							include_once("includes/footer.php");
 							die;
 						} else {
-							echo "<h2 style='text-align: center'>Bienvenue, ".$outParsed['result']['username']." !</h2>";
-							echo "<p style='text-align: center'>Votre User ID : ".$outParsed['result']['userid']."<br />
-							Statut du compte : ".$outParsed['result']['membership']."<br /></p>";
-							?>
-							<a class="btn btn-default" href="sendimgshack.php" role="button"><i class="fa fa-plus"></i> Envoyer des images sur le serveur</a>
-							<?php
+							echo "<div class=\"alert alert-danger\" role=\"alert\">[ERREUR] Erreur inconnue. Merci de réessayer.</div>";
 						}
 					}
 				include_once("includes/footer.php");

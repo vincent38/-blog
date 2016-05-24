@@ -8,7 +8,7 @@
 				?>
 				<br />
 				<footer class="breadcrumb">
-			        <a href="http://editionsdubureau.ovh/blog/index.php"><p class="text-muted">Design du site : © Vincent AUBRIOT - Editions du bureau - 2015</p></a>
+			        <a href="http://editionsdubureau.ovh/"><p class="text-muted">Design du site : © Vincent AUBRIOT - Editions du bureau - 2015</p></a>
 			    </footer>
 
 				</div>

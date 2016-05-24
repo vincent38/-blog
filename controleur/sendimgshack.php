@@ -8,8 +8,32 @@ include_once("modele/fonctionsdb.php");
 
 include_once("apivariables.php");
 
+//Session checker 3000
+if (empty($_SESSION))
+{
+	header("Location: connexion.php");
+}
+else
+{
+	//Affichage "Bienvenue, pseudo" + déco
+	$menu = true;
+}
+
+//Test permissions
+$access = RankingComment($_SESSION["pseudo"]);
+if ($access["miaounet_mod"] == "0")
+{
+	header("Location: index.php");
+}
+
+//Test Imageshack
+if (!isset($_SESSION["token"]))
+{
+	header("Location: index.php");
+}
+
 //Test if file
-if (isset($_FILES["file"]))
+if (isset($_FILES["file"]) AND isset($_POST["title"]))
 {
 	$file = curl_init();
 
@@ -20,6 +44,7 @@ if (isset($_FILES["file"]))
 	$parameters = array(
 		"auth_token"=>$_SESSION["token"],
 		"file"=>$fileslt,
+		"title"=>htmlspecialchars($_POST["title"]),
 		"api_key"=>$imageshack);
 
 	curl_setopt($file, CURLOPT_URL, $url);
@@ -47,7 +72,7 @@ else
 	$menu = false;
 }
 
-$title = "Connexion à Imageshack";
+$title = "Envoi d'images sur Imageshack";
 
 include_once("vue/sendimgshack.php")
 ?>

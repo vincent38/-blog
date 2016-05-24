@@ -8,10 +8,22 @@ include_once("modele/fonctionsdb.php");
 
 include_once("apivariables.php");
 
-//Redirecteur anti double co
-if (isset($_SESSION["token"]) AND !empty($_SESSION["token"]))
+//Session checker 3000
+if (empty($_SESSION))
 {
-	header("Location: sendimgshack.php");
+	header("Location: connexion.php");
+}
+else
+{
+	//Affichage "Bienvenue, pseudo" + déco
+	$menu = true;
+}
+
+//Test permissions
+$access = RankingComment($_SESSION["pseudo"]);
+if ($access["miaounet_mod"] == "0")
+{
+	header("Location: index.php");
 }
 
 //Test if login
@@ -37,22 +49,18 @@ if (isset($_POST["user"]) AND isset($_POST["password"]))
 	if (isset($outParsed['result']['auth_token']))
 	{
 		$_SESSION["token"] = $outParsed['result']['auth_token'];
+		$_SESSION["username_is"] = $outParsed['result']['username'];
+		$_SESSION["userid_is"] = $outParsed['result']['userid'];
+		$_SESSION["membership_is"] = $outParsed['result']['membership'];
 	}
 
 	curl_close($login);
 
 }
 
-//Connexion/déconnexion
-if (isset($_SESSION["pseudo"]))
+if (isset($_SESSION["token"]) AND isset($_SESSION["username_is"]) AND isset($_SESSION["userid_is"]) AND isset($_SESSION["membership_is"]))
 {
-	//Affichage "Bienvenue, pseudo" + déco
-	$menu = true;
-}
-else
-{
-	//Affichage co
-	$menu = false;
+	$imgshack = true;
 }
 
 $title = "Connexion à Imageshack";

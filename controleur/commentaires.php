@@ -67,7 +67,7 @@ if (isset($_GET["id"]))
 	{
 		$comments["cle"]["auteur"] = htmlspecialchars($comment["auteur"]);
 		$comments["cle"]["datewrote"] = $comment["datewrote"];
-		$comments["cle"]["commentaire"] = nl2br(htmlspecialchars($comment["commentaire"]));
+		$comments["cle"]["commentaire"] = htmlspecialchars($comment["commentaire"]);
 	}
 }
 

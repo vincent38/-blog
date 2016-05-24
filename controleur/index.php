@@ -54,7 +54,7 @@ foreach ($billets as $cle => $billet)
 {
 	$billets["cle"]["titre"] = htmlspecialchars($billet["titre"]);
 	$billets["cle"]["auteur"] = htmlspecialchars($billet["auteur"]);
-	$billets["cle"]["contenu"] = nl2br(htmlspecialchars($billet["contenu"]));
+	$billets["cle"]["contenu"] = htmlspecialchars($billet["contenu"]);
 }
 
 //Test si page suivante/précédente possible

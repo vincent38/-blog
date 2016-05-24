@@ -66,7 +66,7 @@
 								$comment["commentaire"] = preg_replace('#(\\\")#i','"', $comment["commentaire"]); //'
 								echo "<div class='well well-sm'>";
 								echo "<img style=\"width: 80px; height: 80px; margin-right: 15px;  float: left\" src='".get_gravatar(gatherMail($comment["auteur"]))."' alt='".$comment["auteur"]."' class=\"img-circle\"/>";
-								echo "<h4><a href='profil.php?pseudo=".$comment["auteur"]."'>".$comment["auteur"]."</a> a écrit ".$comment["datewrote"]." :</h4>";
+								echo "<h4><a href='profil.php?pseudo=".urlencode($comment["auteur"])."'>".$comment["auteur"]."</a> a écrit ".$comment["datewrote"]." :</h4>";
 								echo "<p>".$comment["commentaire"]."</p><br /></div>";
 							}
 						}

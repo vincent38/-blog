@@ -2,7 +2,7 @@
 	vue/moderation.php par Vincent AUBRIOT
 	Availible @ https://github.com/vincent38/-blog/
 	Contient : Espace de modération
-	
+
 	Inclus dans : controleur/moderation.php
 -->
 					<?php
@@ -13,7 +13,7 @@
 						<div class="well">
 							<a class="btn btn-default" href="add_post.php" role="button"><i class="fa fa-plus"></i> Créer un nouvel article</a>
 							<a class="btn btn-default" href="upload.php" role="button"><i class="fa fa-cloud-upload"></i> Importer une nouvelle image</a>
-							<a class="btn btn-default" href="loginimgshack.php" role="button"><i class="fa fa-cloud-upload"></i> Importer une nouvelle image sur Imageshack</a>
+							<!--<a class="btn btn-default" href="chat.php" role="button" disabled><i class="fa fa-comments"></i> Rejoindre le chat interne</a> INDEV - COMING SOON-->
 						</div>
 						<h2 style="text-align: center;">Liste des commentaires postés</h2>
 						<p style="text-align: center;">Cliquez sur un commentaire trop long pour l'afficher en entier</p>
