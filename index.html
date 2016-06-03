@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>QuickBlog by vincent38</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>QuickBlog</h1>
+        <h2>Une plateforme de blog simple et efficace.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/vincent38/-blog/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/vincent38/-blog/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/vincent38/-blog" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="fr-quickblog---une-plateforme-de-blog-simple-et-efficace" class="anchor" href="#fr-quickblog---une-plateforme-de-blog-simple-et-efficace" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>[FR] QuickBlog - Une plateforme de blog simple et efficace</h1>
+
+<h2>
+<a id="a-propos" class="anchor" href="#a-propos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A propos</h2>
+
+<p>Ce blog est un petit projet personnel faisant suite à un TP (disponible sur openclassrooms).
+Le code n'est pas optimisé, certaines fonctions sont en double, des mises à jour fréquentes sont prévues.
+Il n'y a pas de POO, et il n'y en aura jamais. Je n'ai pas encore démarré le cours, et je ne préfére pas recoder
+l'intégralité des fonctionnalités.</p>
+
+<p>ATTENTION : La technologie de cryptage utilisée pour les mots de passe est le sha1. Cette technologie de cryptage sera changée dans une version future. Nous vous recommendons de ne pas stocher des données sensibles, et d'informer vos utilisateurs du fait qu'ils devront changer leurs mots de passe après installation d'une technlogie plus avancée.</p>
+
+<p>Enjoy :3</p>
+
+<h2>
+<a id="technologies" class="anchor" href="#technologies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Technologies</h2>
+
+<p>Blog utilisant des technologies telles que :</p>
+
+<ul>
+<li>HTML, PHP, SQL et Javascript pour le backend</li>
+<li>Bootstrap pour le frontend</li>
+<li>AJAX pour le live reloading des articles</li>
+<li>Font Awesome pour ajouter des icones vectorielles</li>
+<li>reCAPTCHA pour la validation des commentaires et inscriptions</li>
+<li>Gravatar, pour une gestion simplifiée des avatars des membres</li>
+<li>Un BBCODE-Like pour le formattage des articles</li>
+<li>Google charts pour l'affichage de statistiques</li>
+<li>Un accés à l'API twitter, pour une intégration de réseaux sociaux</li>
+<li>Google analytics et adsense pour l'analyse et la publicité</li>
+<li>Imageshack, pour l'hébergement d'images et la génération de balises prêtes à coller dans vos articles</li>
+</ul>
+
+<h2>
+<a id="a-propos---contributions" class="anchor" href="#a-propos---contributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A propos - Contributions</h2>
+
+<p>Ce blog est un projet personnel. Vous pouvez le forker, effectuer des pull requests, mais la décision finale me revient.</p>
+
+<p>Si vous souhaitez vous en servir dans le cadre d'un projet NON-COMMERCIAL, merci de conserver les crédits et le lien vers dans le footer et de m'envoyer un lien vers votre version du blog :D</p>
+
+<h2>
+<a id="dernière-màj" class="anchor" href="#derni%C3%A8re-m%C3%A0j" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dernière MàJ</h2>
+
+<p>Très grande mise à jour depuis le dernier commit d'octobre 2015 !
+Plusieurs fonctionnalités ont fait leur apparition à l'occasion de cette public release v2,
+notamment (liste non exhaustive) :</p>
+
+<ul>
+<li><p>L'éditeur d'articles a été remanié, avec l'ajout de boutons de balises, d'un système de live reloading, et l'intégration d'Imageshack sur l'éditeur (connectez-vous avant de rédiger votre article !)</p></li>
+<li><p>Ajout de fonctions de maintenance, d'un tag cloud et d'un carousel qérés depuis la page d'administration.</p></li>
+<li><p>Live reloading des articles en AJAX</p></li>
+<li><p>Amélioration du moteur interne, ajout de fonctions et de code d'utilité majeure</p></li>
+<li><p>Préparation d'un chat interne (non accessible pour le moment)</p></li>
+<li><p>Autres changements mineurs</p></li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Pour installer la plateforme, il vous faudra approximativement 10 minutes.</p>
+
+<p>1- Rendez-vous dans /modele/</p>
+
+<p>2- Modifiez connexionsql.php avec vos identifiants de connexion à votre BDD</p>
+
+<p>3- Selon votre installation :</p>
+
+<p>--&gt; Serveur basé dans un pays étranger : Gardez fonctionsdb.php et modifiez les intervalles pour adapter le décalage france/pays hébergeur.</p>
+
+<p>--&gt; Serveur basé en france : Supprimez fonctionsdb.php et enlevez le .old du second fichier.</p>
+
+<p>4- Rendez-vous dans /controleur/</p>
+
+<p>5- Ouvrez analytics.php et collez votre code analytics</p>
+
+<p>6- Ouvrez apivariables.php, et collez votre clé reCaptcha, un salt robuste pour le cryptage des mots de passe, votre nom d'utilisateur twitter (pour un partage de liens avec mention de votre compte), ainsi que votre clé d'API Imageshack</p>
+
+<p>7- Ouvrez adsense.php et collez votre code adsense</p>
+
+<p>8- Importez createBDD.sql dans votre base de données</p>
+
+<p>9- Créez un compte sur l'interface web. Choisissez un mot de passe robuste, car vous allez transformer ce compte en compte administrateur.</p>
+
+<p>10- Ouvrez la table membres sur votre BDD via phpmyadmin, par exemple</p>
+
+<p>11- Modifiez le rank de votre compte du 3 au 5.</p>
+
+<p>12- Modifiez les titres des pages (via les variables $titre dans les contrôleurs), ainsi que le titre et le sous-titre de votre blog (dans la page /vue/includes/header.php)</p>
+
+<p>13- Terminé ! Vous pouvez maintenent promouvoir des utilisateurs au rang de modérateur/rédacteur, et commencer à rédiger vos premiers billets ! (N'oubliez pas de supprimer createBDD.sql de la racine du site !)</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
