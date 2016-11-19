@@ -8,7 +8,7 @@ Le code n'est pas optimisé, certaines fonctions sont en double, des mises à jo
 Il n'y a pas de POO, et il n'y en aura jamais. Je n'ai pas encore démarré le cours, et je ne préfére pas recoder
 l'intégralité des fonctionnalités.
 
-ATTENTION : La technologie de cryptage utilisée pour les mots de passe est le sha1. Cette technologie de cryptage sera changée dans une version future. Nous vous recommendons de ne pas stocher des données sensibles, et d'informer vos utilisateurs du fait qu'ils devront changer leurs mots de passe après installation d'une technlogie plus avancée.
+[ATTENTION] Ce projet est en stand-by, et ne sera potentiellement plus mis à jour. Il est déconseillé d'utiliser ce code en production intensive à cause de certaines malfonctions gênantes.
 
 Enjoy :3
 
